@@ -21,11 +21,9 @@ const LOGIN = gql`
 `
 
 function LoginPage() {
-    // const { loading, error, data } = useQuery(GET_DOG_PHOTO, {
-    //     variables: { breed },
-    //   });
     const email = "lydstyl@gmail.com"
     const password = "papass"
+
     const { loading, error, data } = useQuery(LOGIN, {
         variables: { email, password },
     })
