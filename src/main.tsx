@@ -6,31 +6,38 @@ import {
     ApolloClient,
     InMemoryCache,
     ApolloProvider,
-    gql,
+    createHttpLink,
 } from "@apollo/client"
+import { setContext } from "@apollo/client/link/context"
 import "./index.css"
 
-const client = new ApolloClient({
-    uri: "https://flyby-gateway.herokuapp.com/",
-    cache: new InMemoryCache(),
+const httpLink = createHttpLink({
+    uri: "http://localhost:4000/",
 })
 
-// // const client = ...
+const authLink = setContext((_, { headers }) => {
+    const storedLogin = localStorage.getItem("login")
 
-// client
-//     .query({
-//         query: gql`
-//             query GetLocations {
-//                 locations {
-//                     id
-//                     name
-//                     description
-//                     photo
-//                 }
-//             }
-//         `,
-//     })
-//     .then(result => console.log(result))
+    let token = ""
+    if (storedLogin) {
+        token = JSON.parse(storedLogin).token
+    } else {
+        console.log("No token in local storage.")
+    }
+
+    return {
+        headers: {
+            ...headers,
+            authorization: token,
+        },
+    }
+})
+
+const client = new ApolloClient({
+    link: authLink.concat(httpLink),
+
+    cache: new InMemoryCache(),
+})
 
 ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
     <React.StrictMode>

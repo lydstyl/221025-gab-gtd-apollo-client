@@ -13,6 +13,9 @@ function Layout() {
                 <li>
                     <Link to="/protected">Protected Page</Link>
                 </li>
+                <li>
+                    <Link to="/tasks">Tasks</Link>
+                </li>
             </ul>
 
             <Outlet />

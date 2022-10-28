@@ -1,42 +1,48 @@
-import { useNavigate, useLocation } from "react-router-dom"
-import useAuth from "../components/useAuth"
+import { gql, useQuery } from "@apollo/client"
+
+const GET_LOCATIONS = gql`
+    query GetLocations {
+        locations {
+            id
+            name
+            description
+            photo
+        }
+    }
+`
+
+const LOGIN = gql`
+    query Login($email: String, $password: String) {
+        login(email: $email, password: $password) {
+            user
+            token
+        }
+    }
+`
 
 function LoginPage() {
-    let navigate = useNavigate()
-    let location = useLocation()
-    let auth = useAuth()
+    // const { loading, error, data } = useQuery(GET_DOG_PHOTO, {
+    //     variables: { breed },
+    //   });
+    const email = "lydstyl@gmail.com"
+    const password = "papass"
+    const { loading, error, data } = useQuery(LOGIN, {
+        variables: { email, password },
+    })
 
-    let from = location.state?.from?.pathname || "/"
+    if (!loading && !error && data) {
+        console.log(
+            `gb🚀 ~ LoginPage ~ data`,
+            data.login.user,
+            data.login.token
+        )
 
-    function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
-        event.preventDefault()
+        const { user, token } = data.login
 
-        let formData = new FormData(event.currentTarget)
-        let username = formData.get("username") as string
-
-        auth.signin(username, () => {
-            // Send them back to the page they tried to visit when they were
-            // redirected to the login page. Use { replace: true } so we don't create
-            // another entry in the history stack for the login page.  This means that
-            // when they get to the protected page and click the back button, they
-            // won't end up back on the login page, which is also really nice for the
-            // user experience.
-            navigate(from, { replace: true })
-        })
+        localStorage.setItem("login", JSON.stringify({ user, token }))
     }
 
-    return (
-        <div>
-            <p>You must log in to view the page at {from}</p>
-
-            <form onSubmit={handleSubmit}>
-                <label>
-                    Username: <input name="username" type="text" />
-                </label>{" "}
-                <button type="submit">Login</button>
-            </form>
-        </div>
-    )
+    return <div>LoginPage</div>
 }
 
 export default LoginPage
