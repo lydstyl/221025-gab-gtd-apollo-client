@@ -22,7 +22,7 @@ const authLink = setContext((_, { headers }) => {
     if (storedLogin) {
         token = JSON.parse(storedLogin).token
     } else {
-        console.log("No token in local storage.")
+        console.log("Sending request without any token in local storage.")
     }
 
     return {

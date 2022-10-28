@@ -25,8 +25,10 @@ function App() {
                                 path="/loginOld"
                                 element={<LoginPageOld />}
                             />
+
                             <Route path="/login" element={<LoginPage />} />
                             <Route path="/tasks" element={<TasksPage />} />
+
                             <Route
                                 path="/protected"
                                 element={
