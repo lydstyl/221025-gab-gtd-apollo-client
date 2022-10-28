@@ -6,7 +6,7 @@ function Layout() {
         <div>
             <AuthStatus />
 
-            <ul>
+            <ul className="my-4 text-blue-500">
                 <li>
                     <Link to="/">Public Page</Link>
                 </li>
