@@ -1,23 +1,7 @@
-import { gql, useQuery } from "@apollo/client"
-
-const GET_TASKS = gql`
-    query GetTasks {
-        getTasks {
-            id
-            user
-            name
-            labels {
-                id
-                user
-                name
-                position
-            }
-        }
-    }
-`
+import useTasks from "../components/useTasks"
 
 function TasksPage() {
-    const { loading, error, data } = useQuery(GET_TASKS)
+    const { loading, error, data } = useTasks()
 
     if (loading) {
         return <p>Loading...</p>
