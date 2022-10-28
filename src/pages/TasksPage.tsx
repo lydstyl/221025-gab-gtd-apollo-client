@@ -1,4 +1,4 @@
-import useTasks from "../components/useTasks"
+import useTasks from "../hooks/useTasks"
 
 function TasksPage() {
     const { loading, error, data } = useTasks()
@@ -7,7 +7,7 @@ function TasksPage() {
         return <p>Loading...</p>
     }
     if (error) {
-        return <p>Error</p>
+        return <p>Error: {error.message}</p>
     }
 
     return (

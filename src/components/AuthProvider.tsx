@@ -1,6 +1,6 @@
 import { useState, ReactNode } from "react"
 import { fakeAuthProvider } from "../auth"
-import { AuthContext } from "./useAuth"
+import { AuthContext } from "../hooks/useAuth"
 
 function AuthProvider({ children }: { children: ReactNode }) {
     let [user, setUser] = useState<any>(null)

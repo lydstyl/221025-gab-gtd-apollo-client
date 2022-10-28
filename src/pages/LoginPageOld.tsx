@@ -1,5 +1,5 @@
 import { useNavigate, useLocation } from "react-router-dom"
-import useAuth from "../components/useAuth"
+import useAuth from "../hooks/useAuth"
 
 function LoginPage() {
     let navigate = useNavigate()

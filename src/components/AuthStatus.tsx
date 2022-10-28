@@ -1,5 +1,5 @@
 import { useNavigate } from "react-router-dom"
-import useAuth from "./useAuth"
+import useAuth from "../hooks/useAuth"
 
 function AuthStatus() {
     let auth = useAuth()
