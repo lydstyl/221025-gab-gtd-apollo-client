@@ -10,8 +10,8 @@ function Task({ task }) {
     function handleClick() {
         deleteTask({ variables: { deleteTaskId: task.id } })
     }
-    if (loading) return "Submitting..."
-    if (error) return `Submission error! ${error.message}`
+    if (loading) return <p>Submitting...</p>
+    if (error) return <p className="text-red-500">Error: {error.message}</p>
     return (
         <li className="my-4">
             <span className="mx-4">{name}</span>

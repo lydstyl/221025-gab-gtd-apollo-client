@@ -27,7 +27,7 @@ function AddLabel() {
         )
 
     return (
-        <form onSubmit={handleSubmit}>
+        <form onSubmit={handleSubmit} className="flex flex-wrap justify-evenly">
             <input
                 ref={node => {
                     nameInput = node

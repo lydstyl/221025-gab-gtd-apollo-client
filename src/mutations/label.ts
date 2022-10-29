@@ -7,4 +7,11 @@ const ADD_LABEL = gql`
         }
     }
 `
-export { ADD_LABEL }
+const DELETE_LABEL = gql`
+    mutation DeleteLabel($id: String!) {
+        deleteLabel(id: $id) {
+            id
+        }
+    }
+`
+export { ADD_LABEL, DELETE_LABEL }
