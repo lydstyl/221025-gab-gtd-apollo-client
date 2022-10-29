@@ -12,7 +12,7 @@ function AddLabelToTask() {
     const [labelId, setLabelId] = useState<string | null>(null)
     const { loading, error, data } = useQuery(GET_LABELS)
 
-    const [addOneLabelToTask, { data2, loading2, error2 }] = useMutation(
+    const [addOneLabelToTask, addLabelMutationTuple] = useMutation(
         ADD_ONE_LABEL_TO_TASK,
         {
             refetchQueries: [{ query: GET_TASKS }],
@@ -32,14 +32,18 @@ function AddLabelToTask() {
     function handleClick() {
         addOneLabelToTask({ variables: { labelId, taskId: taskDetailId } })
     }
-    if (loading || loading2) return <p>Loading...</p>
+    if (loading || addLabelMutationTuple.loading) return <p>Loading...</p>
     if (error) return <p className="text-red-500">Error: {error.message}</p>
-    if (error2) return <p className="text-red-500">Error: {error2.message}</p>
+    if (addLabelMutationTuple.error)
+        return (
+            <p className="text-red-500">
+                Error: {addLabelMutationTuple.error.message}
+            </p>
+        )
     if (!data) return <p>No data !</p>
     return (
         <>
             <h3 className="text-lg mb-4">Add a label to the task</h3>
-
             <select
                 onChange={handleChange}
                 className="bg-stone-300 px-2 py-1 rounded"

@@ -9,6 +9,7 @@ const GET_TASKS = gql`
                 id
                 name
                 position
+                color
             }
         }
     }
