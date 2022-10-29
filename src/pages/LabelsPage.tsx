@@ -6,12 +6,8 @@ import { Label as LabelType } from "../types/label"
 
 function LabelsPage() {
     const { loading, error, data } = useQuery(GET_LABELS)
-    if (loading) {
-        return <p>Loading...</p>
-    }
-    if (error) {
-        return <p className="text-red-500">Error: {error.message}</p>
-    }
+    if (loading) return <p>Loading...</p>
+    if (error) return <p className="text-red-500">Error: {error.message}</p>
     return (
         <>
             <AddLabel />

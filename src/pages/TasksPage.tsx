@@ -21,7 +21,6 @@ function TasksPage() {
                     ))}
                 </ul>
                 <div className="basis-2/3">
-                    <h2 className="text-xl mb-4">Task detail</h2>
                     <TaskDetail />
                 </div>
             </div>

@@ -14,5 +14,13 @@ const DELETE_TASK = gql`
         }
     }
 `
+const ADD_ONE_LABEL_TO_TASK = gql`
+    mutation AddOneLabelToTask($labelId: String!, $taskId: String!) {
+        addOneLabelToTask(labelId: $labelId, taskId: $taskId) {
+            id
+            name
+        }
+    }
+`
 
-export { ADD_TASK, DELETE_TASK }
+export { ADD_TASK, DELETE_TASK, ADD_ONE_LABEL_TO_TASK }
