@@ -1,11 +1,12 @@
 import { Link, Outlet } from "react-router-dom"
-import AuthStatus from "./AuthStatus"
+// import AuthStatus from "./AuthStatus"
 
 function Layout() {
     return (
-        <div>
-            <AuthStatus />
+        <>
+            {/* <AuthStatus /> */}
 
+            <h2 className="text-xl mb-4">Navigation</h2>
             <ul className="my-4 text-blue-500">
                 {/* <li>
                     <Link to="/">Public Page</Link>
@@ -25,7 +26,7 @@ function Layout() {
             </ul>
 
             <Outlet />
-        </div>
+        </>
     )
 }
 

@@ -18,6 +18,8 @@ function AddTask() {
     if (error) return <p className="text-red-500">Error: {error.message}</p>
     return (
         <form onSubmit={handleSubmit}>
+            <h2 className="text-xl mb-4">Add a new task</h2>
+
             <input
                 ref={node => {
                     input = node

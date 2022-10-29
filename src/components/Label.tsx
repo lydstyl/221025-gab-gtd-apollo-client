@@ -22,7 +22,7 @@ function Label({ label }: { label: LabelType }) {
             <span className="mx-4">{color}</span>
             <button
                 onClick={handleClick}
-                className="mx-4 px-4 border-solid border-2 text-blue-500 border-blue-500 rounded"
+                className="mx-4 px-4 border-solid border-2 text-blue-500 border-blue-500 hover:border-blue-700 rounded"
             >
                 X
             </button>
