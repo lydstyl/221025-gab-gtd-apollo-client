@@ -10,6 +10,7 @@ function Task({ task }: { task: TaskType }) {
             {task.labels &&
                 task.labels.map(label => (
                     <p
+                        key={label.id}
                         style={{ backgroundColor: label.color }}
                         className="inlinebox h-full w-4"
                     ></p>
