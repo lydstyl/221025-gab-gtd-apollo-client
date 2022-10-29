@@ -1,8 +1,9 @@
 import { useMutation } from "@apollo/client"
 import { DELETE_LABEL } from "../mutations/label"
 import { GET_LABELS } from "../queries/label"
+import { Label as LabelType } from "../types/label"
 
-function Label({ label }) {
+function Label({ label }: { label: LabelType }) {
     const { id, name, position, color } = label
     const [deleteTask, { data, loading, error }] = useMutation(DELETE_LABEL, {
         variables: { id },
@@ -15,7 +16,8 @@ function Label({ label }) {
     if (error) return <p className="text-red-500">Error: {error.message}</p>
     return (
         <li className={`my-4 border-b-2 border-${color}`}>
-            <span className="mx-4">{name}</span>
+            <div className={`w-10 h-10 bg-${color}`}> </div>
+            <span className="mx-4 border-l-6">{name}</span>
             <span className="mx-4">position: {position}</span>
             <span className="mx-4">{color}</span>
             <button

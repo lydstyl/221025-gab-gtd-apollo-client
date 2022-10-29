@@ -1,8 +1,9 @@
 import { useMutation } from "@apollo/client"
 import { DELETE_TASK } from "../mutations/task"
 import { GET_TASKS } from "../queries/tasks"
+import { Task as TaskType } from "../types/task"
 
-function Task({ task }) {
+function Task({ task }: { task: TaskType }) {
     const { name } = task
     const [deleteTask, { data, loading, error }] = useMutation(DELETE_TASK, {
         refetchQueries: [{ query: GET_TASKS }],

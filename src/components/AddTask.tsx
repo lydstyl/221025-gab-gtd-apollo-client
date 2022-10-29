@@ -3,17 +3,19 @@ import { ADD_TASK } from "../mutations/task"
 import { GET_TASKS } from "../queries/tasks"
 
 function AddTask() {
-    let input
+    let input: HTMLInputElement | null
     const [addTask, { data, loading, error }] = useMutation(ADD_TASK, {
         refetchQueries: [{ query: GET_TASKS }],
     })
     function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
         event.preventDefault()
-        addTask({ variables: { name: input.value } })
-        input.value = ""
+        addTask({ variables: { name: input?.value } })
+        if (input) {
+            input.value = ""
+        }
     }
-    if (loading) return "Submitting..."
-    if (error) return `Submission error! ${error.message}`
+    if (loading) return <p>Submitting...</p>
+    if (error) return <p className="text-red-500">Error: {error.message}</p>
     return (
         <form onSubmit={handleSubmit}>
             <input

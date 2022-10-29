@@ -3,8 +3,8 @@ import { useLazyQuery } from "@apollo/client"
 import { LOGIN } from "../queries/login"
 
 function LoginPage() {
-    const email = useRef()
-    const password = useRef()
+    const email = useRef<HTMLInputElement>(null)
+    const password = useRef<HTMLInputElement>(null)
     const [getLogin, { loading, error, data }] = useLazyQuery(LOGIN)
 
     const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {

@@ -1,6 +1,7 @@
 import useTasks from "../hooks/useTasks"
 import AddTask from "../components/AddTask"
 import Task from "../components/Task"
+import { Task as TaskType } from "../types/task"
 
 function TasksPage() {
     const { loading, error, data } = useTasks()
@@ -16,7 +17,7 @@ function TasksPage() {
         <>
             <AddTask />
             <ul>
-                {data.getTasks.map(task => (
+                {data.getTasks.map((task: TaskType) => (
                     <Task key={task.id} task={task} />
                 ))}
             </ul>
