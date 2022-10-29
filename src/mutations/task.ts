@@ -7,5 +7,12 @@ const ADD_TASK = gql`
         }
     }
 `
+const DELETE_TASK = gql`
+    mutation DeleteTask($deleteTaskId: String!) {
+        deleteTask(id: $deleteTaskId) {
+            id
+        }
+    }
+`
 
-export { ADD_TASK }
+export { ADD_TASK, DELETE_TASK }

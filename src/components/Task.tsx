@@ -1,11 +1,20 @@
+import { useMutation } from "@apollo/client"
+import { DELETE_TASK } from "../mutations/task"
+import { GET_TASKS } from "../queries/tasks"
+
 function Task({ task }) {
-    const { name } = task
+    const { id, name } = task
+    const [deleteTask, { data, loading, error }] = useMutation(DELETE_TASK, {
+        refetchQueries: [{ query: GET_TASKS }],
+    })
     function handleClick() {
-        console.log("xx")
+        deleteTask({ variables: { deleteTaskId: task.id } })
     }
     return (
         <div className="my-4">
-            <span className="mx-4">{name}</span>
+            <span className="mx-4">
+                {name} {id}
+            </span>
 
             <button
                 onClick={handleClick}

@@ -1,4 +1,3 @@
-import { useRef } from "react"
 import { useMutation } from "@apollo/client"
 import { ADD_TASK } from "../mutations/task"
 import { GET_TASKS } from "../queries/tasks"
