@@ -25,6 +25,7 @@ function TaskDetail() {
 
     if (!data) return <p>There is no data.</p>
     const { name, link, fixedDate, labels } = data.getTask
+
     return (
         <>
             <h2 className="text-xl mb-4">Task detail : {name}</h2>
