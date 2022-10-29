@@ -14,9 +14,9 @@ function Label({ label }: { label: LabelType }) {
     }
     if (loading) return <p>Submitting...</p>
     if (error) return <p className="text-red-500">Error: {error.message}</p>
+
     return (
-        <li className={`my-4 border-b-2 border-${color}`}>
-            <div className={`w-10 h-10 bg-${color}`}> </div>
+        <li style={{ borderColor: ` ${color}` }} className={`my-4 border-b-4 `}>
             <span className="mx-4 border-l-6">{name}</span>
             <span className="mx-4">position: {position}</span>
             <span className="mx-4">{color}</span>

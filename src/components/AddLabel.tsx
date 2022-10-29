@@ -47,7 +47,7 @@ function AddLabel() {
                     colorInput = node
                 }}
                 type="text"
-                placeholder="tailwind color ex.: green-500"
+                placeholder="color ex.: #c7247b"
             />
             <button
                 className="mx-4 px-4 border-solid border-2 text-blue-500 border-blue-500 rounded"
