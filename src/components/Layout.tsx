@@ -19,6 +19,9 @@ function Layout() {
                 <li>
                     <Link to="/tasks">Tasks</Link>
                 </li>
+                <li>
+                    <Link to="/labels">Labels</Link>
+                </li>
             </ul>
 
             <Outlet />

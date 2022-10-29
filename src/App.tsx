@@ -7,6 +7,7 @@ import ProtectedPage from "./pages/ProtectedPage"
 import PublicPage from "./pages/PublicPage"
 import LoginPage from "./pages/LoginPage"
 import TasksPage from "./pages/TasksPage"
+import LabelsPage from "./pages/LabelsPage"
 import "./App.css"
 
 function App() {
@@ -28,6 +29,7 @@ function App() {
 
                             <Route path="/login" element={<LoginPage />} />
                             <Route path="/tasks" element={<TasksPage />} />
+                            <Route path="/labels" element={<LabelsPage />} />
 
                             <Route
                                 path="/protected"
