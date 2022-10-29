@@ -47,7 +47,7 @@ function LoginPage() {
                 placeholder="password"
             />
             <button
-                className="mx-4 px-4 border-solid border-2 border-blue-500 rounded"
+                className="mx-4 px-4 border-solid border-2 text-blue-500 border-blue-500 rounded"
                 type="submit"
             >
                 Submit

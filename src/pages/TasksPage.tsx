@@ -1,4 +1,6 @@
 import useTasks from "../hooks/useTasks"
+import AddTask from "../components/AddTask"
+import Task from "../components/Task"
 
 function TasksPage() {
     const { loading, error, data } = useTasks()
@@ -11,11 +13,14 @@ function TasksPage() {
     }
 
     return (
-        <ul>
-            {data.getTasks.map(task => (
-                <li key={task.id}>{JSON.stringify(task)}</li>
-            ))}
-        </ul>
+        <>
+            <AddTask />
+            <ul>
+                {data.getTasks.map(task => (
+                    <Task key={task.id} task={task} />
+                ))}
+            </ul>
+        </>
     )
 }
 
