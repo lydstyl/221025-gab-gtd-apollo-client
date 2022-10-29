@@ -4,6 +4,7 @@ import { useLazyQuery } from "@apollo/client"
 import { taskDetailIdAtom } from "../store"
 import { GET_TASK } from "../queries/tasks"
 import AddLabelToTask from "./AddLabelToTask"
+import DeleteTask from "./DeleteTask"
 
 function TaskDetail() {
     const [taskDetailId] = useAtom(taskDetailIdAtom)
@@ -30,6 +31,9 @@ function TaskDetail() {
             <AddLabelToTask />
 
             <pre>{JSON.stringify(data.getTask, null, 4)}</pre>
+
+            <p>remove task here</p>
+            <DeleteTask />
         </>
     )
 }

@@ -1,4 +1,4 @@
-import { SetStateAction, useState } from "react"
+import { SetStateAction, useEffect, useState } from "react"
 import { useAtom } from "jotai"
 import { useMutation, useQuery } from "@apollo/client"
 import { GET_LABELS } from "../queries/label"
@@ -18,6 +18,11 @@ function AddLabelToTask() {
             refetchQueries: [{ query: GET_TASKS }],
         }
     )
+    useEffect(() => {
+        if (data?.getLabels[0]?.id) {
+            setLabelId(data.getLabels[0].id)
+        }
+    }, [data])
 
     function handleChange(event: {
         target: { value: SetStateAction<string | null> }
@@ -31,12 +36,14 @@ function AddLabelToTask() {
     if (error) return <p className="text-red-500">Error: {error.message}</p>
     if (error2) return <p className="text-red-500">Error: {error2.message}</p>
     if (!data) return <p>No data !</p>
-
     return (
         <>
             <h3 className="text-lg mb-4">Add a label to the task</h3>
 
-            <select onChange={handleChange} className="bg-stone-300 px-2 py-1">
+            <select
+                onChange={handleChange}
+                className="bg-stone-300 px-2 py-1 rounded"
+            >
                 {data.getLabels.map((label: LabelType) => (
                     <option key={label.id} value={label.id}>
                         {label.name}
