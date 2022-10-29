@@ -1,8 +1,8 @@
 import { gql } from "@apollo/client"
 
 const ADD_LABEL = gql`
-    mutation AddLabel($name: String!, $position: Int!) {
-        addLabel(name: $name, position: $position) {
+    mutation AddLabel($name: String!, $position: Int!, $color: String) {
+        addLabel(name: $name, position: $position, color: $color) {
             id
         }
     }

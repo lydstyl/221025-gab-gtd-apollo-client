@@ -23,6 +23,7 @@ function AddTask() {
                 type="text"
                 name="name"
                 placeholder="name"
+                required
             />
             <button
                 className="mx-4 px-4 border-solid border-2 text-blue-500 border-blue-500 rounded"

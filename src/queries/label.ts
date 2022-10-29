@@ -5,6 +5,8 @@ const GET_LABELS = gql`
         getLabels {
             id
             name
+            position
+            color
             tasks {
                 id
                 name
