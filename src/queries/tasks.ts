@@ -13,5 +13,21 @@ const GET_TASKS = gql`
         }
     }
 `
+const GET_TASK = gql`
+    query GetTask($id: String!) {
+        getTask(id: $id) {
+            id
+            name
+            link
+            fixedDate
+            labels {
+                id
+                name
+                position
+                color
+            }
+        }
+    }
+`
 
-export { GET_TASKS }
+export { GET_TASKS, GET_TASK }

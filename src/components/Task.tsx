@@ -18,7 +18,10 @@ function Task({ task }: { task: TaskType }) {
     if (error) return <p className="text-red-500">Error: {error.message}</p>
     return (
         <li className="my-4">
-            <span className="mx-4" onClick={() => setTaskDetailId(task.id)}>
+            <span
+                className="mx-4 cursor-pointer"
+                onClick={() => setTaskDetailId(task.id)}
+            >
                 {name}
             </span>
             <button

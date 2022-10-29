@@ -7,12 +7,8 @@ import TaskDetail from "../components/TaskDetail"
 function TasksPage() {
     const { loading, error, data } = useTasks()
 
-    if (loading) {
-        return <p>Loading...</p>
-    }
-    if (error) {
-        return <p>Error: {error.message}</p>
-    }
+    if (loading) return <p>Loading...</p>
+    if (error) return <p className="text-red-500">Error: {error.message}</p>
 
     return (
         <>
