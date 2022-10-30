@@ -29,7 +29,7 @@ function TaskDetail() {
     const { name, link, fixedDate, labels } = data.getTask
 
     return (
-        <>
+        <div className="basis-2/3">
             <h2 className="text-xl mb-4">Task detail : {name}</h2>
             <div>
                 <a href={link} target="_blank" rel="noopener noreferrer">
@@ -65,7 +65,7 @@ function TaskDetail() {
             <div>
                 <DeleteTask />
             </div>
-        </>
+        </div>
     )
 }
 export default TaskDetail
