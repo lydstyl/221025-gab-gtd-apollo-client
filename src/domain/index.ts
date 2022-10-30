@@ -141,23 +141,24 @@ const byCustom = (a: Task, b: Task) => {
     if (byTodayOrLessOrNoDateFirst(a, b, { orderBy: "asc" })) {
         return byTodayOrLessOrNoDateFirst(a, b, { orderBy: "asc" })
     }
-    // if (byNoLabelFirst(a, b)) {
-    //     return byNoLabelFirst(a, b)
-    // }
+    if (byNoLabelFirst(a, b)) {
+        // TODO if 0 sort by name
+        return byNoLabelFirst(a, b)
+    }
 
-    // // filter by first label then second ... 5 times
-    // for (let index = 0; index < 6; index++) {
-    //     if (byLabelPosition(a, b, index)) {
-    //         return byLabelPosition(a, b, index)
-    //     }
-    // }
+    // filter by first label then second ... 5 times
+    for (let index = 0; index < 6; index++) {
+        if (byLabelPosition(a, b, index)) {
+            return byLabelPosition(a, b, index)
+        }
+    }
 
-    // if (byName(a, b, { orderBy: "asc" })) {
-    //     return byName(a, b, { orderBy: "asc" })
-    // }
-    // if (byLink(a, b)) {
-    //     return byLink(a, b)
-    // }
+    if (byName(a, b, { orderBy: "asc" })) {
+        return byName(a, b, { orderBy: "asc" })
+    }
+    if (byLink(a, b)) {
+        return byLink(a, b)
+    }
 
     return 0
 }
