@@ -40,22 +40,32 @@ function UpdateTask({ task }) {
             onSubmit={onSubmit}
         >
             {({ isSubmitting }) => (
-                <Form className="my-8 flex flex-wrap justify-between">
-                    <Field type="name" name="name" placeholder="name" />
+                <Form className="my-8 -mx-4 flex flex-wrap flex-col justify-between bg-stone-200 p-4">
+                    <Field
+                        className="my-1 px-4"
+                        type="text"
+                        name="name"
+                        placeholder="name"
+                    />
                     <ErrorMessage
                         className="text-red-500"
                         name="name"
                         component="div"
                     />
 
-                    <Field type="url" name="link" placeholder="link" />
+                    <Field
+                        className="my-1 px-4"
+                        type="url"
+                        name="link"
+                        placeholder="link"
+                    />
                     <ErrorMessage
                         className="text-red-500"
                         name="link"
                         component="div"
                     />
 
-                    <Field type="date" name="fixedDate" />
+                    <Field className="my-1 px-4" type="date" name="fixedDate" />
                     <ErrorMessage
                         className="text-red-500"
                         name="fixedDate"
@@ -63,7 +73,7 @@ function UpdateTask({ task }) {
                     />
 
                     <button
-                        className="mx-4 px-4 border-solid border-2 text-blue-500 border-blue-500 rounded"
+                        className="my-1 px-4 border-solid border-2 text-blue-500 border-blue-500 rounded"
                         type="submit"
                         disabled={isSubmitting}
                     >

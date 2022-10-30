@@ -3,7 +3,6 @@ import { Task as TaskType } from "../types/task"
 import useTasks from "../hooks/useTasks"
 import Task from "../components/Task"
 import { byCustom } from "../domain"
-import H2 from "./H2"
 
 function TaskList() {
     const { loading, error, data } = useTasks()
@@ -22,7 +21,6 @@ function TaskList() {
     if (error) return <p className="text-red-500">Error: {error.message}</p>
     return (
         <ul className="basis-1/2">
-            <H2>Tasks</H2>
             {tasks.map((task: TaskType) => (
                 <Task key={task.id} task={task} />
             ))}

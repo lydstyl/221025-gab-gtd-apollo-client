@@ -31,17 +31,20 @@ function LoginPage() {
         return <p>user and token stored !</p>
     }
     return (
-        <form onSubmit={handleSubmit}>
+        <form
+            onSubmit={handleSubmit}
+            className="bg-stone-200 p-4 -mx-4 flex justify-center"
+        >
             <input
                 ref={email}
-                className="px-4"
+                className="px-4 rounded"
                 type="text"
                 name="email"
                 placeholder="email"
             />
             <input
                 ref={password}
-                className="ml-4 px-4"
+                className="ml-4 px-4 rounded"
                 type="text"
                 name="password"
                 placeholder="password"

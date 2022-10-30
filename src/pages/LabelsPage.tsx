@@ -1,5 +1,6 @@
 import { useQuery } from "@apollo/client"
 import AddLabel from "../components/AddLabel"
+import H2 from "../components/H2"
 import Label from "../components/Label"
 import { GET_LABELS } from "../queries/label"
 import { Label as LabelType } from "../types/label"
@@ -12,6 +13,8 @@ function LabelsPage() {
         <>
             <AddLabel />
             <ul>
+                <H2>Update labels</H2>
+
                 {data.getLabels.map((label: LabelType) => (
                     <Label key={label.id} label={label} />
                 ))}

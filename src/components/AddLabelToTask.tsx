@@ -41,10 +41,9 @@ function AddLabelToTask() {
     if (!data) return <p>No data !</p>
     return (
         <>
-            <h3 className="text-lg mb-4">Add a label to the task</h3>
             <select
                 onChange={handleChange}
-                className="bg-stone-300 px-2 py-1 rounded"
+                className="my-8 bg-stone-300 px-2 py-1 rounded"
             >
                 {data.getLabels.map((label: LabelType) => (
                     <option key={label.id} value={label.id}>

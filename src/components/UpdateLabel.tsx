@@ -39,7 +39,7 @@ function UpdateLabel({ label }: { label: Label }) {
             {({ isSubmitting }) => (
                 <Form className="my-2 flex flex-wrap justify-between">
                     <Field
-                        className="mx-4"
+                        className="mx-4 rounded px-4 w-40"
                         type="name"
                         name="name"
                         placeholder="name"
@@ -51,6 +51,7 @@ function UpdateLabel({ label }: { label: Label }) {
                     />
 
                     <Field
+                        className="mx-4 rounded px-4 text-center w-20"
                         type="number"
                         name="position"
                         placeholder="position"

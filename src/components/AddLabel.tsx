@@ -1,6 +1,7 @@
 import { useMutation } from "@apollo/client"
 import { GET_LABELS } from "../queries/label"
 import { ADD_LABEL } from "../mutations/label"
+import H2 from "./H2"
 
 function AddLabel() {
     let nameInput: HTMLInputElement | null,
@@ -26,36 +27,42 @@ function AddLabel() {
     if (error) return <p className="text-red-500">Error: {error.message}</p>
 
     return (
-        <form onSubmit={handleSubmit} className="flex flex-wrap justify-evenly">
-            <input
-                ref={node => {
-                    nameInput = node
-                }}
-                type="text"
-                placeholder="name"
-                required
-            />
-            <input
-                ref={node => {
-                    positionInput = node
-                }}
-                type="number"
-                placeholder="position"
-            />
-            <input
-                ref={node => {
-                    colorInput = node
-                }}
-                type="text"
-                placeholder="color ex.: #c7247b"
-            />
-            <button
-                className="mx-4 px-4 border-solid border-2 text-blue-500 border-blue-500 rounded"
-                type="submit"
+        <div className="bg-stone-200 -mx-4 p-6">
+            <H2 classes="mt-0 mb-4 text-xl text-stone-500">Add a new label</H2>
+            <form
+                onSubmit={handleSubmit}
+                className="flex flex-wrap justify-evenly"
             >
-                Add label
-            </button>
-        </form>
+                <input
+                    ref={node => {
+                        nameInput = node
+                    }}
+                    type="text"
+                    placeholder="name"
+                    required
+                />
+                <input
+                    ref={node => {
+                        positionInput = node
+                    }}
+                    type="number"
+                    placeholder="position"
+                />
+                <input
+                    ref={node => {
+                        colorInput = node
+                    }}
+                    type="text"
+                    placeholder="color ex.: #c7247b"
+                />
+                <button
+                    className="mx-4 px-4 border-solid border-2 text-blue-500 border-blue-500 rounded"
+                    type="submit"
+                >
+                    Add label
+                </button>
+            </form>
+        </div>
     )
 }
 

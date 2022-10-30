@@ -25,7 +25,7 @@ function DeleteTask() {
     return (
         <button
             onClick={handleClick}
-            className="mx-4 px-4 border-solid border-2 text-blue-500 border-blue-500 rounded"
+            className="block mt-20 px-4 border-solid border-2 text-red-500 border-red-500 rounded"
         >
             Delete task
         </button>
