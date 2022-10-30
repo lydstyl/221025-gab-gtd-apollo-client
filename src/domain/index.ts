@@ -46,27 +46,44 @@ const byNoDateFirst = (a: Task, b: Task, options?: Options) => {
     return 0
 }
 const byTodayOrLessOrNoDateFirst = (a: Task, b: Task, options?: Options) => {
-    if (a.fixedDate) {
-        if (new Date(a.fixedDate) <= new Date()) {
-            return 1
+    function isTodayOrLess(fixedDate: string) {
+        if (new Date(fixedDate) <= new Date()) {
+            return true
+        } else {
+            return false
         }
     }
-    if (b.fixedDate) {
-        if (new Date(b.fixedDate) <= new Date()) {
+
+    if (a.fixedDate && b.fixedDate) {
+        if (isTodayOrLess(a.fixedDate) && isTodayOrLess(b.fixedDate)) {
+            //  > <
+            if (a.fixedDate > b.fixedDate) {
+                return -1
+            }
             return 1
         }
-    }
-    if (!a.fixedDate && b.fixedDate) {
-        if (options?.orderBy === "desc") {
+        if (isTodayOrLess(a.fixedDate)) {
+            return -1
+        }
+        if (isTodayOrLess(b.fixedDate)) {
+            return 1
+        }
+        if (a.fixedDate > b.fixedDate) {
             return 1
         }
         return -1
     }
-    if (!b.fixedDate && a.fixedDate) {
-        if (options?.orderBy === "desc") {
+    if (a.fixedDate) {
+        if (isTodayOrLess(a.fixedDate)) {
             return -1
         }
         return 1
+    }
+    if (b.fixedDate) {
+        if (isTodayOrLess(b.fixedDate)) {
+            return 1
+        }
+        return -1
     }
 
     return 0
@@ -124,23 +141,23 @@ const byCustom = (a: Task, b: Task) => {
     if (byTodayOrLessOrNoDateFirst(a, b, { orderBy: "asc" })) {
         return byTodayOrLessOrNoDateFirst(a, b, { orderBy: "asc" })
     }
-    if (byNoLabelFirst(a, b)) {
-        return byNoLabelFirst(a, b)
-    }
+    // if (byNoLabelFirst(a, b)) {
+    //     return byNoLabelFirst(a, b)
+    // }
 
-    // filter by first label then second ... 5 times
-    for (let index = 0; index < 6; index++) {
-        if (byLabelPosition(a, b, index)) {
-            return byLabelPosition(a, b, index)
-        }
-    }
+    // // filter by first label then second ... 5 times
+    // for (let index = 0; index < 6; index++) {
+    //     if (byLabelPosition(a, b, index)) {
+    //         return byLabelPosition(a, b, index)
+    //     }
+    // }
 
-    if (byName(a, b, { orderBy: "asc" })) {
-        return byName(a, b, { orderBy: "asc" })
-    }
-    if (byLink(a, b)) {
-        return byLink(a, b)
-    }
+    // if (byName(a, b, { orderBy: "asc" })) {
+    //     return byName(a, b, { orderBy: "asc" })
+    // }
+    // if (byLink(a, b)) {
+    //     return byLink(a, b)
+    // }
 
     return 0
 }
