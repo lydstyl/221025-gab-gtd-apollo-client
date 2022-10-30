@@ -6,10 +6,13 @@ import { Label as LabelType } from "../types/label"
 import { taskDetailIdAtom } from "../store"
 import { GET_TASKS } from "../queries/tasks"
 import { ADD_ONE_LABEL_TO_TASK } from "../mutations/task"
+import { byPosition } from "../domain"
+import { Label } from "../types/label"
 
 function AddLabelToTask() {
     const [taskDetailId] = useAtom(taskDetailIdAtom)
     const [labelId, setLabelId] = useState<string | null>(null)
+    const [sortedLabels, setSortedLabels] = useState<Label[]>([])
     const { loading, error, data } = useQuery(GET_LABELS)
 
     const [addOneLabelToTask, mutationTuple] = useMutation(
@@ -19,8 +22,12 @@ function AddLabelToTask() {
         }
     )
     useEffect(() => {
-        if (data?.getLabels[0]?.id) {
-            setLabelId(data.getLabels[0].id)
+        if (data?.getLabels) {
+            let labels = [...data.getLabels]
+            labels = labels.sort(byPosition)
+
+            setLabelId(labels[0].id)
+            setSortedLabels(labels)
         }
     }, [data])
 
@@ -45,7 +52,7 @@ function AddLabelToTask() {
                 onChange={handleChange}
                 className="my-8 bg-stone-300 px-2 py-1 rounded"
             >
-                {data.getLabels.map((label: LabelType) => (
+                {sortedLabels.map((label: LabelType) => (
                     <option key={label.id} value={label.id}>
                         {label.name}
                     </option>

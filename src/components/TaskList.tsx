@@ -15,7 +15,6 @@ function TaskList() {
             const sortedTasks: TaskType[] = initialTasks.sort(byCustom)
 
             let sortedTasksWithSortedLabels = [...sortedTasks]
-
             sortedTasksWithSortedLabels = sortedTasks.map(task => {
                 const labels = [...task.labels]
                 const sortedLabels = labels.sort(byPosition)
