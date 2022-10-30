@@ -1,8 +1,8 @@
 import { useMutation } from "@apollo/client"
 import { Formik, Form, Field, ErrorMessage } from "formik"
-import dayjs from "dayjs"
 import { UPDATE_TASK } from "../mutations/task"
 import { GET_TASKS } from "../queries/tasks"
+import { getDateForInput } from "../utils"
 
 function UpdateTask({ task }) {
     const [updateTask, { data, loading, error }] = useMutation(UPDATE_TASK, {
@@ -24,10 +24,11 @@ function UpdateTask({ task }) {
 
     return (
         <Formik
+            enableReinitialize
             initialValues={{
                 name: task.name || "",
                 link: task.link || "",
-                fixedDate: dayjs(new Date(task.fixedDate)).format("YYYY-MM-DD"),
+                fixedDate: getDateForInput(task.fixedDate) || "",
             }}
             validate={values => {
                 const errors = {}

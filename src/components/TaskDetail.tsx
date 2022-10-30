@@ -30,8 +30,7 @@ function TaskDetail() {
 
     return (
         <div className="basis-2/3">
-            <h2 className="text-xl mb-4">Task detail : {name}</h2>
-            <p>{id}</p>
+            <h2 className="text-xl mb-4">Task detail {id}</h2>
             <div>
                 <a href={link} target="_blank" rel="noopener noreferrer">
                     {link}
@@ -54,9 +53,9 @@ function TaskDetail() {
                 </ul>
             </div>
 
-            <div>
+            {/* <div>
                 fixedDate : {dayjs(new Date(fixedDate)).format("YYYY-MM-DD")}
-            </div>
+            </div> */}
 
             <UpdateTask task={data.getTask} />
 
