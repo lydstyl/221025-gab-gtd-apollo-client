@@ -26,11 +26,12 @@ function TaskDetail() {
     if (error) return <p className="text-red-500">Error: {error.message}</p>
 
     if (!data) return <p>There is no data.</p>
-    const { name, link, fixedDate, labels } = data.getTask
+    const { id, name, link, fixedDate, labels } = data.getTask
 
     return (
         <div className="basis-2/3">
             <h2 className="text-xl mb-4">Task detail : {name}</h2>
+            <p>{id}</p>
             <div>
                 <a href={link} target="_blank" rel="noopener noreferrer">
                     {link}

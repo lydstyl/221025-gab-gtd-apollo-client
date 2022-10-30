@@ -11,13 +11,14 @@ function DeleteTask() {
         refetchQueries: [{ query: GET_TASKS }],
     })
     function handleClick() {
-        console.log(`gb🚀 ~ handleClick ~ taskDetailId`, taskDetailId)
-        deleteTask({ variables: { deleteTaskId: taskDetailId } }).then(
-            result => {
-                console.log(`gb🚀 ~ deleteTask ~ result`, result)
-                // setTaskDetailId("")
-            }
-        )
+        if (confirm(`Delete task with id ${taskDetailId} ?`)) {
+            deleteTask({ variables: { deleteTaskId: taskDetailId } }).then(
+                result => {
+                    console.log(`gb🚀 ~ deleteTask ~ result`, result)
+                    // setTaskDetailId("")
+                }
+            )
+        }
     }
     if (loading) return <p>Submitting...</p>
     if (error) return <p className="text-red-500">Error: {error.message}</p>
