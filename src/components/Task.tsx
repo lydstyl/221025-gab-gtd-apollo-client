@@ -6,24 +6,27 @@ import { taskDetailIdAtom } from "../store"
 
 function Task({ task }: { task: TaskType }) {
     const [taskDetailId, setTaskDetailId] = useAtom(taskDetailIdAtom)
-    const { name } = task
+    const { id, name, link, fixedDate, labels } = task
+
     return (
         <li className="my-4 flex h-6">
-            {task.fixedDate && (
-                <p>{dayjs(new Date(task.fixedDate)).format("YYYY-MM-DD")}</p>
+            {fixedDate && (
+                <p>{dayjs(new Date(fixedDate)).format("YYYY-MM-DD")}</p>
             )}
 
-            {task.labels &&
-                task.labels.map(label => (
+            {labels &&
+                labels.map(label => (
                     <p
                         key={label.id}
                         style={{ backgroundColor: label.color }}
-                        className="inlinebox h-full w-4"
-                    ></p>
+                        className="inlinebox h-full w-6 ml-2 text-center"
+                    >
+                        {label.position}
+                    </p>
                 ))}
             <span
                 className="mx-4 cursor-pointer"
-                onClick={() => setTaskDetailId(task.id)}
+                onClick={() => setTaskDetailId(id)}
             >
                 {name}
             </span>
