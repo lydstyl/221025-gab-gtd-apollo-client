@@ -71,6 +71,17 @@ const byTodayOrLessOrNoDateFirst = (a: Task, b: Task, options?: Options) => {
         if (a.fixedDate > b.fixedDate) {
             return 1
         }
+        if (a.fixedDate === b.fixedDate) {
+            // if (byAllLabelsPositions(a, b)) {
+            //     return byAllLabelsPositions(a, b)
+            // }
+
+            if (a.labels.length > b.labels.length) {
+                return -1
+            }
+
+            return 0
+        }
         return -1
     }
     if (a.fixedDate) {
@@ -129,13 +140,30 @@ const byLabelPosition = (a: Task, b: Task, labelIndex: number) => {
     return 0
 }
 const byNoLabelFirst = (a: Task, b: Task) => {
-    if (!a.labels.length) {
+    function hasLabel(task: Task) {
+        return task.labels.length
+    }
+    if (!hasLabel(a) && !hasLabel(b)) {
+        if (byName(a, b, { orderBy: "asc" })) {
+            return byName(a, b, { orderBy: "asc" })
+        }
+    }
+    if (!hasLabel(a)) {
         return -1
     }
-    if (!b.labels.length) {
+    if (!hasLabel(b)) {
         return 1
     }
     return 0
+}
+const byAllLabelsPositions = (a: Task, b: Task) => {
+    // sort by first label then second ... x times
+    const maxIndex = Math.max(a.labels.length, b.labels.length)
+    for (let index = 0; index <= maxIndex; index++) {
+        if (byLabelPosition(a, b, index)) {
+            return byLabelPosition(a, b, index)
+        }
+    }
 }
 const byCustom = (a: Task, b: Task) => {
     if (byTodayOrLessOrNoDateFirst(a, b, { orderBy: "asc" })) {
@@ -146,11 +174,8 @@ const byCustom = (a: Task, b: Task) => {
         return byNoLabelFirst(a, b)
     }
 
-    // filter by first label then second ... 5 times
-    for (let index = 0; index < 6; index++) {
-        if (byLabelPosition(a, b, index)) {
-            return byLabelPosition(a, b, index)
-        }
+    if (byAllLabelsPositions(a, b)) {
+        return byAllLabelsPositions(a, b)
     }
 
     if (byName(a, b, { orderBy: "asc" })) {
