@@ -77,7 +77,7 @@ const byTodayOrLessOrNoDateFirst = (a: Task, b: Task, options?: Options) => {
             // }
 
             if (a.labels.length > b.labels.length) {
-                return -1
+                return -1 // TODO find a way to sort with all labels positions if possible
             }
 
             return 0

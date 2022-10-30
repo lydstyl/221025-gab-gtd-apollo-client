@@ -12,7 +12,7 @@ function AddLabelToTask() {
     const [labelId, setLabelId] = useState<string | null>(null)
     const { loading, error, data } = useQuery(GET_LABELS)
 
-    const [addOneLabelToTask, addLabelMutationTuple] = useMutation(
+    const [addOneLabelToTask, mutationTuple] = useMutation(
         ADD_ONE_LABEL_TO_TASK,
         {
             refetchQueries: [{ query: GET_TASKS }],
@@ -32,13 +32,11 @@ function AddLabelToTask() {
     function handleClick() {
         addOneLabelToTask({ variables: { labelId, taskId: taskDetailId } })
     }
-    if (loading || addLabelMutationTuple.loading) return <p>Loading...</p>
+    if (loading || mutationTuple.loading) return <p>Loading...</p>
     if (error) return <p className="text-red-500">Error: {error.message}</p>
-    if (addLabelMutationTuple.error)
+    if (mutationTuple.error)
         return (
-            <p className="text-red-500">
-                Error: {addLabelMutationTuple.error.message}
-            </p>
+            <p className="text-red-500">Error: {mutationTuple.error.message}</p>
         )
     if (!data) return <p>No data !</p>
     return (
