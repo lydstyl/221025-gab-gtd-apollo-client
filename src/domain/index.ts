@@ -54,7 +54,7 @@ const byLink = (a: Task, b: Task) => {
     return 0
 }
 
-const byGabsSort = (a: Task, b: Task) => {
+const byCustom = (a: Task, b: Task) => {
     if (byNoDateFirst(a, b, { orderBy: "asc" })) {
         return byNoDateFirst(a, b, { orderBy: "asc" })
     }
@@ -74,4 +74,4 @@ const byGabsSort = (a: Task, b: Task) => {
     return 0
 }
 
-export { byName, byDate, byGabsSort }
+export { byName, byDate, byCustom }

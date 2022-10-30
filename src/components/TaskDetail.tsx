@@ -1,7 +1,6 @@
 import { useEffect } from "react"
 import { useAtom } from "jotai"
 import { useLazyQuery } from "@apollo/client"
-import dayjs from "dayjs"
 
 import { taskDetailIdAtom } from "../store"
 import { GET_TASK } from "../queries/tasks"
@@ -52,10 +51,6 @@ function TaskDetail() {
                     ))}
                 </ul>
             </div>
-
-            {/* <div>
-                fixedDate : {dayjs(new Date(fixedDate)).format("YYYY-MM-DD")}
-            </div> */}
 
             <UpdateTask task={data.getTask} />
 

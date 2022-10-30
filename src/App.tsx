@@ -16,7 +16,7 @@ function App() {
             <div className="bg-gray-100 h-screen">
                 <div className=" mx-0 px-4 w-320">
                     <h1 className="-mx-4 mb-4 py-4 text-center bg-slate-300 text-3xl font-bold">
-                        Gab's zen GTD
+                        My custom GTD
                     </h1>
 
                     <Routes>
