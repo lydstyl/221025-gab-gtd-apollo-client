@@ -5,6 +5,8 @@ const GET_TASKS = gql`
         getTasks {
             id
             name
+            link
+            fixedDate
             labels {
                 id
                 name

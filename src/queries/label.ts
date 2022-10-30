@@ -1,5 +1,27 @@
 import { gql } from "@apollo/client"
 
+// enum Label {
+//     collect
+
+//     quick
+
+//     important
+//     urgent // fixedDate
+
+//     outside
+//     phone
+
+//     recursive
+//     support
+
+//     business
+//     real estate
+//     health
+//     social
+// }
+
+// importance: Int
+
 const GET_LABELS = gql`
     query GetLabels {
         getLabels {

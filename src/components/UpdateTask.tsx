@@ -47,20 +47,19 @@ function UpdateTask({ task }) {
                         component="div"
                     />
 
-                    <Field
+                    <Field type="url" name="link" placeholder="link" />
+                    <ErrorMessage
                         className="text-red-500"
-                        type="url"
                         name="link"
-                        placeholder="link"
+                        component="div"
                     />
-                    <ErrorMessage name="link" component="div" />
 
-                    <Field
+                    <Field type="date" name="fixedDate" />
+                    <ErrorMessage
                         className="text-red-500"
-                        type="date"
                         name="fixedDate"
+                        component="div"
                     />
-                    <ErrorMessage name="fixedDate" component="div" />
 
                     <button
                         className="mx-4 px-4 border-solid border-2 text-blue-500 border-blue-500 rounded"
