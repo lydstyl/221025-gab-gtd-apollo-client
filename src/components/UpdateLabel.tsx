@@ -1,7 +1,6 @@
 import { useMutation } from "@apollo/client"
 import { Formik, Form, Field, ErrorMessage } from "formik"
 import { UPDATE_LABEL, GET_LABELS } from "../queries/label"
-import { GET_TASKS } from "../queries/tasks"
 import { Label } from "../types/label"
 
 function UpdateLabel({ label }: { label: Label }) {
@@ -38,8 +37,13 @@ function UpdateLabel({ label }: { label: Label }) {
             onSubmit={onSubmit}
         >
             {({ isSubmitting }) => (
-                <Form className="my-8 flex flex-wrap justify-between">
-                    <Field type="name" name="name" placeholder="name" />
+                <Form className="my-2 flex flex-wrap justify-between">
+                    <Field
+                        className="mx-4"
+                        type="name"
+                        name="name"
+                        placeholder="name"
+                    />
                     <ErrorMessage
                         className="text-red-500"
                         name="name"
@@ -57,7 +61,7 @@ function UpdateLabel({ label }: { label: Label }) {
                         component="div"
                     />
 
-                    <Field type="color" name="color" />
+                    <Field className="mx-4 h-full" type="color" name="color" />
                     <ErrorMessage
                         className="text-red-500"
                         name="color"
@@ -69,7 +73,7 @@ function UpdateLabel({ label }: { label: Label }) {
                         type="submit"
                         disabled={isSubmitting}
                     >
-                        Submit
+                        Update
                     </button>
                 </Form>
             )}

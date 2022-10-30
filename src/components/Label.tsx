@@ -5,7 +5,7 @@ import { Label as LabelType } from "../types/label"
 import UpdateLabel from "./UpdateLabel"
 
 function Label({ label }: { label: LabelType }) {
-    const { id, name, position, color } = label
+    const { id } = label
     const [deleteTask, { data, loading, error }] = useMutation(DELETE_LABEL, {
         variables: { id },
         refetchQueries: [{ query: GET_LABELS }],
@@ -17,17 +17,14 @@ function Label({ label }: { label: LabelType }) {
     if (error) return <p className="text-red-500">Error: {error.message}</p>
 
     return (
-        <li style={{ borderColor: ` ${color}` }} className={`my-4 border-b-4 `}>
-            <span className="mx-4 border-l-6">{name}</span>
-            <span className="mx-4">position: {position}</span>
-            <span className="mx-4">{color}</span>
+        <li className={`my-4 flex justify-evenly`}>
+            <UpdateLabel label={label} />
             <button
                 onClick={handleClick}
-                className="mx-4 px-4 border-solid border-2 text-blue-500 border-blue-500 hover:border-blue-700 rounded"
+                className="my-2 py-2 px-2 border-solid border-2 text-blue-500 border-blue-500 hover:border-blue-700 rounded"
             >
                 X
             </button>
-            <UpdateLabel label={label} />
         </li>
     )
 }
