@@ -1,33 +1,32 @@
 import { useMutation } from "@apollo/client"
 import { Formik, Form, Field, ErrorMessage } from "formik"
-import dayjs from "dayjs"
-import { UPDATE_TASK } from "../mutations/task"
+import { UPDATE_LABEL, GET_LABELS } from "../queries/label"
 import { GET_TASKS } from "../queries/tasks"
+import { Label } from "../types/label"
 
-function UpdateTask({ task }) {
-    const [updateTask, { data, loading, error }] = useMutation(UPDATE_TASK, {
-        refetchQueries: [{ query: GET_TASKS }],
+function UpdateLabel({ label }: { label: Label }) {
+    const [updateLabel, { data, loading, error }] = useMutation(UPDATE_LABEL, {
+        refetchQueries: [{ query: GET_LABELS }],
     })
 
     const onSubmit = (values, { setSubmitting }) => {
         console.log(values)
-
-        updateTask({
-            variables: { updateTaskId: task.id, ...values },
+        // {name: 'label1dddd', position: 6, color: '#263a59'}
+        updateLabel({
+            variables: { updateLabelId: label.id, ...values },
         })
 
         setSubmitting(false)
     }
-
     if (loading) return <p>Loading...</p>
     if (error) return <p className="text-red-500">Error: {error.message}</p>
 
     return (
         <Formik
             initialValues={{
-                name: task.name || "",
-                link: task.link || "",
-                fixedDate: dayjs(new Date(task.fixedDate)).format("YYYY-MM-DD"),
+                name: label.name || "",
+                position: label.position || "0",
+                color: label.color,
             }}
             validate={values => {
                 const errors = {}
@@ -48,19 +47,22 @@ function UpdateTask({ task }) {
                     />
 
                     <Field
-                        className="text-red-500"
-                        type="url"
-                        name="link"
-                        placeholder="link"
+                        type="number"
+                        name="position"
+                        placeholder="position"
                     />
-                    <ErrorMessage name="link" component="div" />
+                    <ErrorMessage
+                        className="text-red-500"
+                        name="position"
+                        component="div"
+                    />
 
-                    <Field
+                    <Field type="color" name="color" />
+                    <ErrorMessage
                         className="text-red-500"
-                        type="date"
-                        name="fixedDate"
+                        name="color"
+                        component="div"
                     />
-                    <ErrorMessage name="fixedDate" component="div" />
 
                     <button
                         className="mx-4 px-4 border-solid border-2 text-blue-500 border-blue-500 rounded"
@@ -74,4 +76,4 @@ function UpdateTask({ task }) {
         </Formik>
     )
 }
-export default UpdateTask
+export default UpdateLabel

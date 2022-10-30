@@ -2,6 +2,7 @@ import { useMutation } from "@apollo/client"
 import { DELETE_LABEL } from "../mutations/label"
 import { GET_LABELS } from "../queries/label"
 import { Label as LabelType } from "../types/label"
+import UpdateLabel from "./UpdateLabel"
 
 function Label({ label }: { label: LabelType }) {
     const { id, name, position, color } = label
@@ -26,6 +27,7 @@ function Label({ label }: { label: LabelType }) {
             >
                 X
             </button>
+            <UpdateLabel label={label} />
         </li>
     )
 }
