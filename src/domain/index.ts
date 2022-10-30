@@ -109,18 +109,17 @@ const byLink = (a: Task, b: Task) => {
     return 0
 }
 
+const byPosition = (a: Label, b: Label) => {
+    if (a.position > b.position) {
+        return 1
+    }
+    if (a.position < b.position) {
+        return -1
+    }
+    return 0
+}
 const sortTaskLabels = (task: Task): Label[] => {
     let newTaskLabels = [...task.labels]
-
-    const byPosition = (a: Label, b: Label) => {
-        if (a.position > b.position) {
-            return 1
-        }
-        if (a.position < b.position) {
-            return -1
-        }
-        return 0
-    }
 
     newTaskLabels = newTaskLabels.sort(byPosition)
 
@@ -188,4 +187,4 @@ const byCustom = (a: Task, b: Task) => {
     return 0
 }
 
-export { byName, byDate, byCustom }
+export { byName, byDate, byCustom, byPosition }

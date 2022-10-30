@@ -30,7 +30,7 @@ function Task({ task }: { task: TaskType }) {
                         {label.position}
                     </p>
                 ))}
-            <p className="inline-block">{name}</p>
+            <p className="inline-block ml-2">{name}</p>
         </li>
     )
 }

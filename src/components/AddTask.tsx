@@ -25,6 +25,7 @@ function AddTask() {
                 ref={node => {
                     input = node
                 }}
+                className="rounded px-4"
                 type="text"
                 name="name"
                 placeholder="name"

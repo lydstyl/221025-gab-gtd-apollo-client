@@ -42,7 +42,7 @@ function UpdateTask({ task }) {
             {({ isSubmitting }) => (
                 <Form className="my-8 -mx-4 flex flex-wrap flex-col justify-between bg-stone-200 p-4">
                     <Field
-                        className="my-1 px-4"
+                        className="my-1 px-4 rounded text-lg"
                         type="text"
                         name="name"
                         placeholder="name"
@@ -54,7 +54,7 @@ function UpdateTask({ task }) {
                     />
 
                     <Field
-                        className="my-1 px-4"
+                        className="my-1 px-4 rounded text-blue-500"
                         type="url"
                         name="link"
                         placeholder="link"
@@ -65,7 +65,11 @@ function UpdateTask({ task }) {
                         component="div"
                     />
 
-                    <Field className="my-1 px-4" type="date" name="fixedDate" />
+                    <Field
+                        className="my-1 px-4 rounded"
+                        type="date"
+                        name="fixedDate"
+                    />
                     <ErrorMessage
                         className="text-red-500"
                         name="fixedDate"
