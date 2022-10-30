@@ -1,3 +1,4 @@
+import { Label } from "../types/label"
 import { Task } from "../types/task"
 
 interface Options {
@@ -79,12 +80,33 @@ const byLink = (a: Task, b: Task) => {
     }
     return 0
 }
-const byFirstLabelPosition = (a: Task, b: Task) => {
-    // TODO change this we have to sort label first
-    if (a.labels[0]?.position > b.labels[0]?.position) {
+
+const sortTaskLabels = (task: Task): Label[] => {
+    let newTaskLabels = [...task.labels]
+
+    const byPosition = (a: Label, b: Label) => {
+        if (a.position > b.position) {
+            return 1
+        }
+        if (a.position < b.position) {
+            return -1
+        }
+        return 0
+    }
+
+    newTaskLabels = newTaskLabels.sort(byPosition)
+
+    return newTaskLabels
+}
+
+const byLabelPosition = (a: Task, b: Task, labelIndex: number) => {
+    const aLabels = sortTaskLabels(a)
+    const bLabels = sortTaskLabels(b)
+
+    if (aLabels[labelIndex]?.position > bLabels[labelIndex]?.position) {
         return 1
     }
-    if (a.labels[0]?.position < b.labels[0]?.position) {
+    if (aLabels[labelIndex]?.position < bLabels[labelIndex]?.position) {
         return -1
     }
     return 0
@@ -105,15 +127,20 @@ const byCustom = (a: Task, b: Task) => {
     if (byNoLabelFirst(a, b)) {
         return byNoLabelFirst(a, b)
     }
-    if (byFirstLabelPosition(a, b)) {
-        return byFirstLabelPosition(a, b)
+
+    // filter by first label then second ... 5 times
+    for (let index = 0; index < 6; index++) {
+        if (byLabelPosition(a, b, index)) {
+            return byLabelPosition(a, b, index)
+        }
     }
-    // if (byName(a, b, { orderBy: "asc" })) {
-    //     return byName(a, b, { orderBy: "asc" })
-    // }
-    // if (byLink(a, b)) {
-    //     return byLink(a, b)
-    // }
+
+    if (byName(a, b, { orderBy: "asc" })) {
+        return byName(a, b, { orderBy: "asc" })
+    }
+    if (byLink(a, b)) {
+        return byLink(a, b)
+    }
 
     return 0
 }
