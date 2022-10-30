@@ -1,4 +1,5 @@
 import { Link, Outlet } from "react-router-dom"
+import H2 from "./H2"
 // import AuthStatus from "./AuthStatus"
 
 function Layout() {
@@ -6,8 +7,8 @@ function Layout() {
         <>
             {/* <AuthStatus /> */}
 
-            <h2 className="text-xl mb-4">Navigation</h2>
-            <ul className="my-4 text-blue-500">
+            <H2>Navigation</H2>
+            <ul className="my-16 text-blue-500 flex justify-around">
                 {/* <li>
                     <Link to="/">Public Page</Link>
                 </li>

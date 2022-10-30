@@ -9,9 +9,15 @@ function Task({ task }: { task: TaskType }) {
     const { id, name, link, fixedDate, labels } = task
 
     return (
-        <li className="my-4 flex h-6">
+        <li
+            className="my-1 border bg-stone-100 mr-4 cursor-pointer"
+            // className=" bg-stone-100 cursor-pointer"
+            onClick={() => setTaskDetailId(id)}
+        >
             {fixedDate && (
-                <p>{dayjs(new Date(fixedDate)).format("YYYY-MM-DD")}</p>
+                <p className="inline-block bg-stone-300 px-2">
+                    {dayjs(new Date(fixedDate)).format("YYYY-MM-DD")}
+                </p>
             )}
 
             {labels &&
@@ -19,17 +25,12 @@ function Task({ task }: { task: TaskType }) {
                     <p
                         key={label.id}
                         style={{ backgroundColor: label.color }}
-                        className="inlinebox h-full w-6 ml-2 text-center"
+                        className="inline-block h-full w-8 px2 ml-0 text-center"
                     >
                         {label.position}
                     </p>
                 ))}
-            <span
-                className="mx-4 cursor-pointer"
-                onClick={() => setTaskDetailId(id)}
-            >
-                {name}
-            </span>
+            <p className="inline-block">{name}</p>
         </li>
     )
 }

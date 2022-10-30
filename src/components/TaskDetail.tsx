@@ -7,6 +7,7 @@ import AddLabelToTask from "./AddLabelToTask"
 import DeleteTask from "./DeleteTask"
 import UpdateTask from "./UpdateTask"
 import TaskDetailLabels from "./TaskDetailLabels"
+import H2 from "./H2"
 
 function TaskDetail() {
     const [taskDetailId] = useAtom(taskDetailIdAtom)
@@ -28,8 +29,8 @@ function TaskDetail() {
     const { link, labels } = data.getTask
 
     return (
-        <div className="basis-2/3">
-            <h2 className="text-xl mb-4">Task detail</h2>
+        <>
+            <H2>Task detail</H2>
             <a
                 className="text-blue-500"
                 href={link}
@@ -42,7 +43,7 @@ function TaskDetail() {
             <TaskDetailLabels labels={labels} />
             <AddLabelToTask />
             <DeleteTask />
-        </div>
+        </>
     )
 }
 export default TaskDetail

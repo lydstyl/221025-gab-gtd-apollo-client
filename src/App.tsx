@@ -13,35 +13,30 @@ import "./App.css"
 function App() {
     return (
         <AuthProvider>
-            <div className="bg-gray-100 h-screen">
-                <div className=" mx-0 px-4 w-320">
-                    <h1 className="-mx-4 mb-4 py-4 text-center bg-slate-300 text-3xl font-bold">
-                        My custom GTD
-                    </h1>
+            <div className=" mx-0 px-4 w-320">
+                <h1 className="-mx-4 mb-4 py-4 text-center bg-stone-300 text-3xl font-bold text-stone-600">
+                    My custom GTD
+                </h1>
 
-                    <Routes>
-                        <Route element={<Layout />}>
-                            <Route path="/" element={<PublicPage />} />
-                            <Route
-                                path="/loginOld"
-                                element={<LoginPageOld />}
-                            />
+                <Routes>
+                    <Route element={<Layout />}>
+                        <Route path="/" element={<PublicPage />} />
+                        <Route path="/loginOld" element={<LoginPageOld />} />
 
-                            <Route path="/login" element={<LoginPage />} />
-                            <Route path="/tasks" element={<TasksPage />} />
-                            <Route path="/labels" element={<LabelsPage />} />
+                        <Route path="/login" element={<LoginPage />} />
+                        <Route path="/tasks" element={<TasksPage />} />
+                        <Route path="/labels" element={<LabelsPage />} />
 
-                            <Route
-                                path="/protected"
-                                element={
-                                    <RequireAuth>
-                                        <ProtectedPage />
-                                    </RequireAuth>
-                                }
-                            />
-                        </Route>
-                    </Routes>
-                </div>
+                        <Route
+                            path="/protected"
+                            element={
+                                <RequireAuth>
+                                    <ProtectedPage />
+                                </RequireAuth>
+                            }
+                        />
+                    </Route>
+                </Routes>
             </div>
         </AuthProvider>
     )

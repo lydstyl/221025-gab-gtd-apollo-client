@@ -1,6 +1,7 @@
 import { useMutation } from "@apollo/client"
 import { ADD_TASK } from "../mutations/task"
 import { GET_TASKS } from "../queries/tasks"
+import H2 from "./H2"
 
 function AddTask() {
     let input: HTMLInputElement | null
@@ -18,7 +19,7 @@ function AddTask() {
     if (error) return <p className="text-red-500">Error: {error.message}</p>
     return (
         <form onSubmit={handleSubmit}>
-            <h2 className="text-xl mb-4">Add a new task</h2>
+            <H2>Add a new task</H2>
 
             <input
                 ref={node => {
