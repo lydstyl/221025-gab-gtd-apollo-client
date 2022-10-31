@@ -20,23 +20,24 @@ function AddTask() {
     return (
         <form onSubmit={handleSubmit}>
             <H2>Add a new task</H2>
-
-            <input
-                ref={node => {
-                    input = node
-                }}
-                className="rounded px-4"
-                type="text"
-                name="name"
-                placeholder="name"
-                required
-            />
-            <button
-                className="mx-4 px-4 border-solid border-2 text-blue-500 border-blue-500 rounded"
-                type="submit"
-            >
-                Add task
-            </button>
+            <div className="flex flew-row">
+                <input
+                    ref={node => {
+                        input = node
+                    }}
+                    className="rounded px-4 w-full"
+                    type="text"
+                    name="name"
+                    placeholder="name"
+                    required
+                />
+                <button
+                    className="basis-1/4 mr-0 ml-4 px-4 border-solid border-2 text-blue-500 border-blue-500 rounded"
+                    type="submit"
+                >
+                    Add task
+                </button>
+            </div>
         </form>
     )
 }

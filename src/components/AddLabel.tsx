@@ -34,6 +34,7 @@ function AddLabel() {
                 className="flex flex-wrap justify-evenly"
             >
                 <input
+                    className="rounded px-4"
                     ref={node => {
                         nameInput = node
                     }}
@@ -42,6 +43,7 @@ function AddLabel() {
                     required
                 />
                 <input
+                    className="rounded px-4"
                     ref={node => {
                         positionInput = node
                     }}
@@ -49,6 +51,7 @@ function AddLabel() {
                     placeholder="position"
                 />
                 <input
+                    className="rounded px-4"
                     ref={node => {
                         colorInput = node
                     }}
