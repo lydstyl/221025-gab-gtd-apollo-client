@@ -8,12 +8,12 @@ function TasksPage() {
         <>
             <H2>Tasks</H2>
             <div className="flex flex-row mt-8 ">
-                <TaskList />
                 <div className="basis-1/2 bg-stone-100 p-4 rounded">
                     <AddTask />
 
                     <TaskDetail />
                 </div>
+                <TaskList />
             </div>
         </>
     )

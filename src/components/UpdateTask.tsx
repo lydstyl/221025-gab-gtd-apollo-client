@@ -10,8 +10,6 @@ function UpdateTask({ task }) {
     })
 
     const onSubmit = (values, { setSubmitting }) => {
-        console.log(values)
-
         updateTask({
             variables: { updateTaskId: task.id, ...values },
         })

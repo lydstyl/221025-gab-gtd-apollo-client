@@ -10,8 +10,7 @@ function Task({ task }: { task: TaskType }) {
 
     return (
         <li
-            className="my-1 border bg-stone-100 mr-4 cursor-pointer"
-            // className=" bg-stone-100 cursor-pointer"
+            className="my-1 border bg-stone-100 ml-4 cursor-pointer"
             onClick={() => setTaskDetailId(id)}
         >
             {fixedDate && (

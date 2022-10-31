@@ -14,7 +14,7 @@ function DeleteTask() {
         if (confirm(`Delete task with id ${taskDetailId} ?`)) {
             deleteTask({ variables: { deleteTaskId: taskDetailId } }).then(
                 result => {
-                    console.log(`gb🚀 ~ deleteTask ~ result`, result)
+                    // console.log(`gb🚀 ~ deleteTask ~ result`, result)
                     // setTaskDetailId("")
                 }
             )

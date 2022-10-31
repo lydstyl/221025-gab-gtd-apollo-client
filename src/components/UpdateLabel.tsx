@@ -9,8 +9,6 @@ function UpdateLabel({ label }: { label: Label }) {
     })
 
     const onSubmit = (values, { setSubmitting }) => {
-        console.log(values)
-        // {name: 'label1dddd', position: 6, color: '#263a59'}
         updateLabel({
             variables: { updateLabelId: label.id, ...values },
         })
