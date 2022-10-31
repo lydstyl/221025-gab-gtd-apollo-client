@@ -9,7 +9,7 @@ import { Label as LabelType } from "../types/label"
 
 function LabelsPage() {
     const { loading, error, data } = useQuery(GET_LABELS)
-    const [sortedLabels, setSortedLabels] = useState<LabelType[]>([])
+    const [sortedLabels, setSortedLabels] = useState<LabelType[]>([]) // TODO try jotai to fix bug when updating label
 
     useEffect(() => {
         if (data?.getLabels) {

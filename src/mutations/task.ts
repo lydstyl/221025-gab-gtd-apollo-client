@@ -35,12 +35,14 @@ const UPDATE_TASK = gql`
         $name: String
         $link: String
         $fixedDate: Date
+        $clearFixedDate: Boolean
     ) {
         updateTask(
+            id: $updateTaskId
             name: $name
             link: $link
             fixedDate: $fixedDate
-            id: $updateTaskId
+            clearFixedDate: $clearFixedDate
         ) {
             id
             user

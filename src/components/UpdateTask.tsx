@@ -18,6 +18,11 @@ function UpdateTask({ task }) {
 
         setSubmitting(false)
     }
+    const clearDate = () => {
+        updateTask({
+            variables: { updateTaskId: task.id, clearFixedDate: true },
+        })
+    }
 
     if (loading) return <p>Loading...</p>
     if (error) return <p className="text-red-500">Error: {error.message}</p>
@@ -77,11 +82,18 @@ function UpdateTask({ task }) {
                     />
 
                     <button
+                        onClick={clearDate}
+                        className="my-1 px-4 border-solid border-2 text-blue-500 border-blue-500 rounded"
+                        disabled={isSubmitting}
+                    >
+                        Clear task date
+                    </button>
+                    <button
                         className="my-1 px-4 border-solid border-2 text-blue-500 border-blue-500 rounded"
                         type="submit"
                         disabled={isSubmitting}
                     >
-                        Submit
+                        Update task
                     </button>
                 </Form>
             )}
