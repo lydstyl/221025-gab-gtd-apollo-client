@@ -1,15 +1,19 @@
-import { useMutation } from "@apollo/client"
+import { OperationVariables, useMutation } from "@apollo/client"
 import { Formik, Form, Field, ErrorMessage } from "formik"
 import { UPDATE_TASK } from "../mutations/task"
 import { GET_TASKS } from "../queries/tasks"
+import { Task } from "../types/task"
 import { getDateForInput } from "../utils"
 
-function UpdateTask({ task }) {
+function UpdateTask({ task }: { task: Task }) {
     const [updateTask, { data, loading, error }] = useMutation(UPDATE_TASK, {
         refetchQueries: [{ query: GET_TASKS }],
     })
 
-    const onSubmit = (values, { setSubmitting }) => {
+    const onSubmit = (
+        values: OperationVariables | undefined,
+        { setSubmitting }: any
+    ) => {
         updateTask({
             variables: { updateTaskId: task.id, ...values },
         })
@@ -34,7 +38,7 @@ function UpdateTask({ task }) {
                 fixedDate: getDateForInput(task.fixedDate) || "",
             }}
             validate={values => {
-                const errors = {}
+                const errors: { name?: string } = {}
                 if (values.name.length < 3) {
                     errors.name = "Length must be gretter then 3."
                 }

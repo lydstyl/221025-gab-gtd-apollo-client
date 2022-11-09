@@ -155,7 +155,7 @@ const byNoLabelFirst = (a: Task, b: Task) => {
     }
     return 0
 }
-const byAllLabelsPositions = (a: Task, b: Task) => {
+const byAllLabelsPositions = (a: Task, b: Task): number => {
     // sort by first label then second ... x times
     const maxIndex = Math.max(a.labels.length, b.labels.length)
     for (let index = 0; index <= maxIndex; index++) {
@@ -163,8 +163,9 @@ const byAllLabelsPositions = (a: Task, b: Task) => {
             return byLabelPosition(a, b, index)
         }
     }
+    return 0
 }
-const byCustom = (a: Task, b: Task) => {
+const byCustom = (a: Task, b: Task): number => {
     if (byTodayOrLessOrNoDateFirst(a, b, { orderBy: "asc" })) {
         return byTodayOrLessOrNoDateFirst(a, b, { orderBy: "asc" })
     }

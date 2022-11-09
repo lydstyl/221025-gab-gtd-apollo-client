@@ -1,4 +1,4 @@
-import { useMutation } from "@apollo/client"
+import { OperationVariables, useMutation } from "@apollo/client"
 import { Formik, Form, Field, ErrorMessage } from "formik"
 import { UPDATE_LABEL, GET_LABELS } from "../queries/label"
 import { Label } from "../types/label"
@@ -8,7 +8,10 @@ function UpdateLabel({ label }: { label: Label }) {
         refetchQueries: [{ query: GET_LABELS }],
     })
 
-    const onSubmit = (values, { setSubmitting }) => {
+    const onSubmit = (
+        values: OperationVariables | undefined,
+        { setSubmitting }: any
+    ) => {
         updateLabel({
             variables: { updateLabelId: label.id, ...values },
         })
@@ -26,7 +29,8 @@ function UpdateLabel({ label }: { label: Label }) {
                 color: label.color,
             }}
             validate={values => {
-                const errors = {}
+                const errors: { name?: string } = {}
+
                 if (values.name.length < 3) {
                     errors.name = "Length must be gretter then 3."
                 }
