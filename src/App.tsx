@@ -17,6 +17,7 @@ function App() {
                 <h1 className="-mx-4 mb-4 py-4 text-center bg-stone-300 text-3xl font-bold text-stone-600">
                     My custom GTD
                 </h1>
+                {/* <p>env {process.env.REACT_APP_API_URI}</p> */}
 
                 <Routes>
                     <Route element={<Layout />}>
