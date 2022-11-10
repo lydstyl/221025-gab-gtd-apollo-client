@@ -33,24 +33,24 @@ function LoginPage() {
     return (
         <form
             onSubmit={handleSubmit}
-            className="bg-stone-200 p-4 -mx-4 flex justify-center"
+            className="bg-stone-200 p-4 -mx-4 sm:flex justify-center"
         >
             <input
                 ref={email}
-                className="px-4 rounded"
+                className="my-4 px-4 rounded"
                 type="text"
                 name="email"
                 placeholder="email"
             />
             <input
                 ref={password}
-                className="ml-4 px-4 rounded"
+                className="my-4 sm:ml-4 px-4 rounded"
                 type="text"
                 name="password"
                 placeholder="password"
             />
             <button
-                className="mx-4 px-4 border-solid border-2 text-blue-500 border-blue-500 rounded"
+                className="my-4 sm:mx-4 px-4 border-solid border-2 text-blue-500 border-blue-500 rounded"
                 type="submit"
             >
                 Submit
