@@ -31,10 +31,10 @@ function AddLabel() {
             <H2 classes="mt-0 mb-4 text-xl text-stone-500">Add a new label</H2>
             <form
                 onSubmit={handleSubmit}
-                className="flex flex-wrap justify-evenly"
+                className="sm:flex flex-wrap justify-evenly"
             >
                 <input
-                    className="rounded px-4"
+                    className="my-4 rounded px-4"
                     ref={node => {
                         nameInput = node
                     }}
@@ -43,7 +43,7 @@ function AddLabel() {
                     required
                 />
                 <input
-                    className="rounded px-4"
+                    className="my-4 rounded px-4"
                     ref={node => {
                         positionInput = node
                     }}
@@ -51,7 +51,7 @@ function AddLabel() {
                     placeholder="position"
                 />
                 <input
-                    className="rounded px-4"
+                    className="my-4 rounded px-4"
                     ref={node => {
                         colorInput = node
                     }}
@@ -59,7 +59,7 @@ function AddLabel() {
                     placeholder="color ex.: #c7247b"
                 />
                 <button
-                    className="mx-4 px-4 border-solid border-2 text-blue-500 border-blue-500 rounded"
+                    className="my-4 sm:mx-4 px-4 border-solid border-2 text-blue-500 border-blue-500 rounded"
                     type="submit"
                 >
                     Add label

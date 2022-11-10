@@ -19,11 +19,11 @@ function Label({ label }: { label: LabelType }) {
     if (error) return <p className="text-red-500">Error: {error.message}</p>
 
     return (
-        <li className={`my-2 flex justify-evenly bg-stone-200 rounded`}>
+        <li className={`my-2 sm:flex justify-evenly bg-stone-200 rounded`}>
             <UpdateLabel label={label} />
             <button
                 onClick={handleClick}
-                className="my-2 py-2 px-2 border-solid border-2 text-red-500 border-red-500 hover:border-red-700 rounded"
+                className="ml-4 my-2 py-2 px-2 border-solid border-2 text-red-500 border-red-500 hover:border-red-700 rounded"
             >
                 X
             </button>

@@ -39,9 +39,9 @@ function UpdateLabel({ label }: { label: Label }) {
             onSubmit={onSubmit}
         >
             {({ isSubmitting }) => (
-                <Form className="my-2 flex flex-wrap justify-between">
+                <Form className="my-2 sm:flex flex-wrap justify-between">
                     <Field
-                        className="mx-4 rounded px-4 w-40"
+                        className="w-auto my-4 mx-4 rounded px-4 w-40"
                         type="name"
                         name="name"
                         placeholder="name"
@@ -53,7 +53,7 @@ function UpdateLabel({ label }: { label: Label }) {
                     />
 
                     <Field
-                        className="mx-4 rounded px-4 text-center w-20"
+                        className="my-4 mx-4 rounded px-4 text-center w-20"
                         type="number"
                         name="position"
                         placeholder="position"
@@ -64,7 +64,11 @@ function UpdateLabel({ label }: { label: Label }) {
                         component="div"
                     />
 
-                    <Field className="mx-4 h-full" type="color" name="color" />
+                    <Field
+                        className="mx-4 sm:h-full h-10"
+                        type="color"
+                        name="color"
+                    />
                     <ErrorMessage
                         className="text-red-500"
                         name="color"
