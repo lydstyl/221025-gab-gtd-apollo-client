@@ -7,7 +7,7 @@ function TasksPage() {
     return (
         <>
             <H2>Tasks</H2>
-            <div className="flex flex-row mt-8 ">
+            <div className="sm:flex sm:flex-row mt-8 ">
                 <div className="basis-1/2 bg-stone-100 p-4 rounded">
                     <AddTask />
 

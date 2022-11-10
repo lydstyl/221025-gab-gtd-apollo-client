@@ -20,7 +20,7 @@ function AddTask() {
     return (
         <form onSubmit={handleSubmit}>
             <H2>Add a new task</H2>
-            <div className="flex flew-row">
+            <div className="sm:flex sm:flew-row">
                 <input
                     ref={node => {
                         input = node
@@ -32,7 +32,7 @@ function AddTask() {
                     required
                 />
                 <button
-                    className="basis-1/4 mr-0 ml-4 px-4 border-solid border-2 text-blue-500 border-blue-500 rounded"
+                    className="sm:basis-1/4 my-4 mr-0 sm:ml-4 px-4 border-solid border-2 text-blue-500 border-blue-500 rounded"
                     type="submit"
                 >
                     Add task

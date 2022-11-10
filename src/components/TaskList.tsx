@@ -31,7 +31,7 @@ function TaskList() {
     if (loading) return <p>Loading...</p>
     if (error) return <p className="text-red-500">Error: {error.message}</p>
     return (
-        <ul className="basis-1/2">
+        <ul className="sm:basis-1/2">
             {tasks.map((task: TaskType) => (
                 <Task key={task.id} task={task} />
             ))}
