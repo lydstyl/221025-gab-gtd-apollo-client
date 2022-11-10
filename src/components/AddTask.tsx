@@ -1,16 +1,21 @@
+import { useAtom } from "jotai"
 import { useMutation } from "@apollo/client"
+import { taskDetailIdAtom } from "../store"
 import { ADD_TASK } from "../mutations/task"
 import { GET_TASKS } from "../queries/tasks"
 import H2 from "./H2"
 
 function AddTask() {
+    const [taskDetailId, setTaskDetailId] = useAtom(taskDetailIdAtom)
+
     let input: HTMLInputElement | null
     const [addTask, { data, loading, error }] = useMutation(ADD_TASK, {
         refetchQueries: [{ query: GET_TASKS }],
     })
-    function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
+    async function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
         event.preventDefault()
-        addTask({ variables: { name: input?.value } })
+        const res = await addTask({ variables: { name: input?.value } })
+        setTaskDetailId(res.data.addTask.id)
         if (input) {
             input.value = ""
         }

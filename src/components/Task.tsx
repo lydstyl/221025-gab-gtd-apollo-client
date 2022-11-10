@@ -31,9 +31,6 @@ function Task({ task }: { task: TaskType }) {
                     </p>
                 ))}
             <p className="inline-block ml-2">{name}</p>
-            <p className="inline-block ml-2">
-                {taskDetailId === id ? "yep" : "nope"}
-            </p>
         </li>
     )
 }
