@@ -2,8 +2,10 @@
 
 Inspired by the "Get things done" method, this app is a sort of improved todolist with personalized labels/tags and a powerful sorting algorithm so you know what to do at all times.
 
+Already used for myself, this app is under construction and you can't create user from client for now.
+
 See the app here :
-https://my-custom-gtd.netlify.app/tasks
+https://my-custom-gtd.netlify.app
 
 This application use graphQl and other cool technologies.
 
