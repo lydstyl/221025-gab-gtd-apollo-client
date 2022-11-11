@@ -2,7 +2,7 @@ import { useEffect, useState } from "react"
 import { Task as TaskType } from "../types/task"
 import useTasks from "../hooks/useTasks"
 import Task from "../components/Task"
-import { byCustom, byPosition } from "../domain"
+import { byPosition, getMyTasksCustomlySorted } from "../domain"
 
 function TaskList() {
     const { loading, error, data } = useTasks()
@@ -12,7 +12,8 @@ function TaskList() {
         if (data?.getTasks) {
             const initialTasks: TaskType[] = [...data.getTasks]
 
-            const sortedTasks: TaskType[] = initialTasks.sort(byCustom)
+            const sortedTasks: TaskType[] =
+                getMyTasksCustomlySorted(initialTasks)
 
             let sortedTasksWithSortedLabels = [...sortedTasks]
             sortedTasksWithSortedLabels = sortedTasks.map(task => {
