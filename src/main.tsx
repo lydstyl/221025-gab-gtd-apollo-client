@@ -13,8 +13,9 @@ import "./index.css"
 
 const httpLink = createHttpLink({
     // uri: "http://localhost:4000/",
-    uri: "https://my-custom-gtd.onrender.com/",
     // uri: process.env.REACT_APP_API_URI,
+    // uri: "https://my-custom-gtd.onrender.com/",
+    uri: "https://lazy-pink-leopard-tux.cyclic.app/",
 })
 
 const authLink = setContext((_, { headers }) => {
