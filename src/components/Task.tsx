@@ -9,8 +9,8 @@ function Task({ task }: { task: TaskType }) {
     const { id, name, link, fixedDate, labels } = task
 
     const liClasses = `${
-        taskDetailId === id ? "border-red-500" : ""
-    } my-1 border bg-stone-100 sm:ml-4 cursor-pointer`
+        taskDetailId === id ? "border-red-500 border-8 border-l-0" : ""
+    } my-1  bg-stone-100 sm:ml-4 cursor-pointer`
 
     return (
         <li className={liClasses} onClick={() => setTaskDetailId(id)}>
