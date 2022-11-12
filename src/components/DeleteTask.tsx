@@ -23,7 +23,7 @@ function DeleteTask() {
     if (loading) return <p>Submitting...</p>
     if (error) return <p className="text-red-500">Error: {error.message}</p>
     return (
-        <div className="bg-stone-400 -mx-4 p-4 rounded">
+        <div className="bg-stone-400 -mx-4 p-4 rounded mb-4">
             <button
                 onClick={handleClick}
                 className="block m-auto px-4 border-solid border-2 text-red-500 border-red-500 rounded"

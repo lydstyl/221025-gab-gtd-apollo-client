@@ -9,7 +9,7 @@ function Task({ task }: { task: TaskType }) {
     const { id, name, link, fixedDate, labels } = task
 
     const liClasses = `${
-        taskDetailId === id ? "border-red-500 border-8 border-l-0" : ""
+        taskDetailId === id ? "border-red-500 border-b-8 border-r-8" : ""
     } even:bg-stone-100 odd:bg-stone-300 sm:ml-4 cursor-pointer`
 
     return (
