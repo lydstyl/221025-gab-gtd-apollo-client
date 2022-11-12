@@ -23,7 +23,10 @@ function AddTask() {
     if (loading) return <p>Submitting...</p>
     if (error) return <p className="text-red-500">Error: {error.message}</p>
     return (
-        <form onSubmit={handleSubmit}>
+        <form
+            onSubmit={handleSubmit}
+            className="border-2 rounded bg-stone-200 -mx-4 p-4 mb-4"
+        >
             <H2>Add a new task</H2>
             <div className="sm:flex sm:flew-row">
                 <input

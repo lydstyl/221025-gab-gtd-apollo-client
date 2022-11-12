@@ -47,7 +47,7 @@ function UpdateTask({ task }: { task: Task }) {
             onSubmit={onSubmit}
         >
             {({ isSubmitting }) => (
-                <Form className="my-8 -mx-4 flex flex-wrap flex-col justify-between bg-stone-200 p-4">
+                <Form className="my-8 flex flex-wrap flex-col justify-between">
                     <Field
                         className="my-1 px-4 rounded text-lg"
                         type="text"
