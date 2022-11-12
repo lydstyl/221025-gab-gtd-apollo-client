@@ -61,7 +61,7 @@ function UpdateTask({ task }: { task: Task }) {
                     />
 
                     <Field
-                        className="my-1 px-4 rounded text-blue-500"
+                        className="my-1 mb-10 px-4 rounded text-blue-500"
                         type="url"
                         name="link"
                         placeholder="link"
@@ -85,7 +85,7 @@ function UpdateTask({ task }: { task: Task }) {
 
                     <button
                         onClick={clearDate}
-                        className="my-1 px-4 border-solid border-2 text-blue-500 border-blue-500 rounded"
+                        className="my-1 mb-10 px-4 border-solid border-2 text-blue-500 border-blue-500 rounded"
                         disabled={isSubmitting}
                     >
                         Clear task date

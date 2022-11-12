@@ -10,12 +10,12 @@ function Task({ task }: { task: TaskType }) {
 
     const liClasses = `${
         taskDetailId === id ? "border-red-500 border-8 border-l-0" : ""
-    } my-1  bg-stone-100 sm:ml-4 cursor-pointer`
+    } even:bg-stone-100 odd:bg-stone-300 sm:ml-4 cursor-pointer`
 
     return (
         <li className={liClasses} onClick={() => setTaskDetailId(id)}>
             {fixedDate && (
-                <p className="inline-block bg-stone-300 px-2">
+                <p className="inline-block bg-stone-400 px-2">
                     {dayjs(new Date(fixedDate)).format("YYYY-MM-DD")}
                 </p>
             )}
@@ -25,7 +25,7 @@ function Task({ task }: { task: TaskType }) {
                     <p
                         key={label.id}
                         style={{ backgroundColor: label.color }}
-                        className="inline-block h-full w-8 px2 ml-0 text-center"
+                        className="inline-block h-full w-8 text-center"
                     >
                         {label.position}
                     </p>
