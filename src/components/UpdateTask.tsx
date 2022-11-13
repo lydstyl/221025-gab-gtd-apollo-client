@@ -7,27 +7,27 @@ import { GET_TASKS } from "../queries/tasks"
 import { Task } from "../types/task"
 import { getDateForInput } from "../utils"
 
+function getSelectedTaskData() {
+    const selectedTask = document.querySelector(".selected-task")
+    const fixedDate = selectedTask?.querySelector(".fixed-date")?.textContent
+    const labels = selectedTask?.querySelectorAll(".label")
+    const name = selectedTask?.querySelector(".name")?.textContent
+    return { fixedDate, labels, name }
+}
+
 function UpdateTask({ task }: { task: Task }) {
     const [updateTask, { data, loading, error }] = useMutation(UPDATE_TASK, {
         refetchQueries: [{ query: GET_TASKS }],
     })
-    useHotkeys("shift+A", () => {
-        const selectedTask = document.querySelector(".selected-task")
-        console.log(selectedTask?.querySelector(".name")?.textContent)
-        console.log(selectedTask?.querySelector(".fixed-date")?.textContent)
-        console.log(
-            selectedTask?.querySelectorAll(".label")?.forEach(el => {
-                el.textContent
-            })
-        )
-        console.log(selectedTask?.querySelector(".name")?.textContent)
-    })
     useHotkeys("shift+L", () => {
-        const selectedTaskLink = document.querySelector(".selected-task-link")
+        // console.log("Go to task link.")
+        const selectedTaskLink = document.querySelector(
+            ".selected-task-link"
+        ) as HTMLElement
         selectedTaskLink?.click()
     })
     useHotkeys("shift+C", () => {
-        console.log("Clear date.")
+        // console.log("Clear date.")
         const button = document.getElementById("delete-task-button")
         const updateTaskId = button?.dataset.taskId
         updateTask({
@@ -35,30 +35,44 @@ function UpdateTask({ task }: { task: Task }) {
         })
     })
     useHotkeys("shift+D", () => {
-        console.log("+1 day.")
+        // console.log("+1 day.")
         const button = document.getElementById("delete-task-button")
         const updateTaskId = button?.dataset.taskId
-        const fixedDate = dayjs().add(1, "day").format("YYYY-MM-DD")
+        const { fixedDate } = getSelectedTaskData()
+
         updateTask({
-            variables: { updateTaskId, fixedDate },
+            variables: {
+                updateTaskId,
+                fixedDate: dayjs(fixedDate).add(1, "day").format("YYYY-MM-DD"),
+            },
         })
     })
     useHotkeys("shift+W", () => {
-        console.log("+1 week.")
+        // console.log("+1 week.")
         const button = document.getElementById("delete-task-button")
         const updateTaskId = button?.dataset.taskId
-        const fixedDate = dayjs().add(1, "week").format("YYYY-MM-DD")
+        const { fixedDate } = getSelectedTaskData()
+
         updateTask({
-            variables: { updateTaskId, fixedDate },
+            variables: {
+                updateTaskId,
+                fixedDate: dayjs(fixedDate).add(1, "week").format("YYYY-MM-DD"),
+            },
         })
     })
     useHotkeys("shift+M", () => {
-        console.log("+1 month.")
+        // console.log("+1 month.")
         const button = document.getElementById("delete-task-button")
         const updateTaskId = button?.dataset.taskId
-        const fixedDate = dayjs().add(1, "month").format("YYYY-MM-DD")
+        const { fixedDate } = getSelectedTaskData()
+
         updateTask({
-            variables: { updateTaskId, fixedDate },
+            variables: {
+                updateTaskId,
+                fixedDate: dayjs(fixedDate)
+                    .add(1, "month")
+                    .format("YYYY-MM-DD"),
+            },
         })
     })
     const onSubmit = (
