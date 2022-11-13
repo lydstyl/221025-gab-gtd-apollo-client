@@ -8,13 +8,15 @@ function Task({ task }: { task: TaskType }) {
     const { id, name, link, fixedDate, labels } = task
 
     const liClasses = `${
-        taskDetailId === id ? "border-red-500 border-b-8 border-r-8" : ""
+        taskDetailId === id
+            ? "selected-task border-red-500 border-b-8 border-r-8"
+            : ""
     } even:bg-stone-100 odd:bg-stone-300 sm:ml-4 cursor-pointer`
 
     return (
         <li className={liClasses} onClick={() => setTaskDetailId(id)}>
             {fixedDate && (
-                <p className="inline-block bg-stone-400 px-2">
+                <p className="fixed-date inline-block bg-stone-400 px-2">
                     {dayjs(new Date(fixedDate)).format("YYYY-MM-DD")}
                 </p>
             )}
@@ -24,12 +26,12 @@ function Task({ task }: { task: TaskType }) {
                     <p
                         key={label.id}
                         style={{ backgroundColor: label.color }}
-                        className="inline-block h-full w-8 text-center"
+                        className="label inline-block h-full w-8 text-center"
                     >
                         {label.position}
                     </p>
                 ))}
-            <p className="inline-block ml-2">{name}</p>
+            <p className="name inline-block ml-2">{name}</p>
         </li>
     )
 }
