@@ -1,6 +1,5 @@
 import { useAtom } from "jotai"
 import dayjs from "dayjs"
-
 import { Task as TaskType } from "../types/task"
 import { taskDetailIdAtom } from "../store"
 

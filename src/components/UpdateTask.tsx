@@ -1,5 +1,7 @@
 import { OperationVariables, useMutation } from "@apollo/client"
 import { Formik, Form, Field, ErrorMessage } from "formik"
+import dayjs from "dayjs"
+import { useHotkeys } from "react-hotkeys-hook"
 import { UPDATE_TASK } from "../mutations/task"
 import { GET_TASKS } from "../queries/tasks"
 import { Task } from "../types/task"
@@ -9,7 +11,23 @@ function UpdateTask({ task }: { task: Task }) {
     const [updateTask, { data, loading, error }] = useMutation(UPDATE_TASK, {
         refetchQueries: [{ query: GET_TASKS }],
     })
-
+    useHotkeys("shift+D", () => {
+        console.log("+1 day.")
+        const button = document.getElementById("delete-task-button")
+        const updateTaskId = button?.dataset.taskId
+        const fixedDate = dayjs().add(1, "day").format("YYYY-MM-DD")
+        updateTask({
+            variables: { updateTaskId, fixedDate },
+        })
+    })
+    useHotkeys("shift+C", () => {
+        console.log("Clear date.")
+        const button = document.getElementById("delete-task-button")
+        const updateTaskId = button?.dataset.taskId
+        updateTask({
+            variables: { updateTaskId, clearFixedDate: true },
+        })
+    })
     const onSubmit = (
         values: OperationVariables | undefined,
         { setSubmitting }: any

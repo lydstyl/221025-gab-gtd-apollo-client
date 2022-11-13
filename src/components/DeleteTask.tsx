@@ -41,10 +41,6 @@ function DeleteTask() {
             )
         }
     }
-    useEffect(() => {
-        console.log("task id changed ! " + taskDetailId)
-    }, [taskDetailId])
-
     if (loading) return <p>Submitting...</p>
     if (error) return <p className="text-red-500">Error: {error.message}</p>
     return (

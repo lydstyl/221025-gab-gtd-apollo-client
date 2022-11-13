@@ -1,7 +1,6 @@
 import { useAtom } from "jotai"
 import { useMutation } from "@apollo/client"
 import { useHotkeys } from "react-hotkeys-hook"
-
 import { taskDetailIdAtom } from "../store"
 import { ADD_TASK } from "../mutations/task"
 import { GET_TASKS } from "../queries/tasks"
