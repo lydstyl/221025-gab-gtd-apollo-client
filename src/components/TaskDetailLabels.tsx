@@ -28,7 +28,7 @@ function TaskDetailLabels({ labels }: { labels: Label[] }) {
     if (loading) return <p>Loading...</p>
     if (error) return <p className="text-red-500">Error: {error.message}</p>
     return (
-        <ul className="">
+        <ul className="labels-in-selected-task">
             {labels.map((label: Label) => (
                 <li
                     key={label.id}

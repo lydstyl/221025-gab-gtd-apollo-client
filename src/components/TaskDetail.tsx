@@ -32,14 +32,14 @@ function TaskDetail() {
         <>
             <div className="bg-stone-400 -mx-4 p-4 rounded">
                 <H2>Task detail</H2>
-                <a
+                {/* <a
                     className="selected-task-link text-blue-500 block overflow-hidden text-ellipsis whitespace-nowrap"
                     href={link}
                     target="_blank"
                     rel="noopener noreferrer"
                 >
                     {link}
-                </a>
+                </a> */}
                 <UpdateTask task={data.getTask} />
             </div>
 
