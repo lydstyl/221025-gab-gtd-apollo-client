@@ -34,7 +34,19 @@ function Task({ task }: { task: TaskType }) {
                         {label.position}
                     </p>
                 ))}
-            <p className="name inline-block ml-2">{name}</p>
+
+            {link && (
+                <a
+                    className="link inline-block h-full w-8 text-center text-blue-500 bg-blue-200"
+                    href={link}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                >
+                    L
+                </a>
+            )}
+
+            <span className="name ml-2">{name}</span>
         </li>
     )
 }
