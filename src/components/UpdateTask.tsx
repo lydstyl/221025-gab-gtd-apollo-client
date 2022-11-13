@@ -38,6 +38,20 @@ function UpdateTask({ task }: { task: Task }) {
             variables: { updateTaskId, clearFixedDate: true },
         })
     })
+    useHotkeys("shift+Y", () => {
+        // console.log("-1 day.")
+        const button = document.getElementById("delete-task-button")
+        const updateTaskId = button?.dataset.taskId
+        const { fixedDate } = getSelectedTaskData()
+        updateTask({
+            variables: {
+                updateTaskId,
+                fixedDate: dayjs(fixedDate)
+                    .subtract(1, "day")
+                    .format("YYYY-MM-DD"),
+            },
+        })
+    })
     useHotkeys("shift+D", () => {
         // console.log("+1 day.")
         const button = document.getElementById("delete-task-button")

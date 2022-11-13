@@ -14,7 +14,8 @@ function DeleteTask() {
         "shift+R, shift+T+D, shift+T+S",
         () => {
             const button = document.getElementById("delete-task-button")
-            if (confirm(`Delete task with id ${button?.dataset.taskId} ?`)) {
+            // if (confirm(`Delete task with id ${button?.dataset.taskId} ?`)) {
+            if (confirm(`Delete task ?`)) {
                 deleteTask({
                     variables: { deleteTaskId: button?.dataset.taskId },
                 }).then(result => {

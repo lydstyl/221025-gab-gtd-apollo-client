@@ -9,8 +9,8 @@ import H2 from "./H2"
 function AddTask() {
     const [taskDetailId, setTaskDetailId] = useAtom(taskDetailIdAtom)
     let taskNameInput: HTMLInputElement | null
-    useHotkeys("shift+T+A", () => {
-        console.log("shift+T+A")
+    useHotkeys("shift+N, shift+T+A", () => {
+        // console.log("Add a new task.")
         document.getElementById("add-task-name-input")?.focus()
     })
 
