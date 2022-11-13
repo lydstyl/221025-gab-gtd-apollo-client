@@ -1,21 +1,25 @@
 import { OperationVariables, useMutation } from "@apollo/client"
 import { Formik, Form, Field, ErrorMessage } from "formik"
+import { useAtom } from "jotai"
 import dayjs from "dayjs"
 import { useHotkeys } from "react-hotkeys-hook"
+import { Task } from "../types/task"
 import { UPDATE_TASK } from "../mutations/task"
 import { GET_TASKS } from "../queries/tasks"
-import { Task } from "../types/task"
+import { taskDetailIdAtom } from "../store"
 import { getDateForInput } from "../utils"
 
 function getSelectedTaskData() {
-    const selectedTask = document.querySelector(".selected-task")
+    const selectedTask = document.querySelector(".selected-task") as HTMLElement
+    const taskId = selectedTask?.dataset.taskId
     const fixedDate = selectedTask?.querySelector(".fixed-date")?.textContent
     const labels = selectedTask?.querySelectorAll(".label")
     const name = selectedTask?.querySelector(".name")?.textContent
-    return { fixedDate, labels, name }
+    return { selectedTask, taskId, fixedDate, labels, name }
 }
 
 function UpdateTask({ task }: { task: Task }) {
+    const [taskDetailId, setTaskDetailId] = useAtom(taskDetailIdAtom)
     const [updateTask, { data, loading, error }] = useMutation(UPDATE_TASK, {
         refetchQueries: [{ query: GET_TASKS }],
     })
@@ -74,6 +78,24 @@ function UpdateTask({ task }: { task: Task }) {
                     .format("YYYY-MM-DD"),
             },
         })
+    })
+    useHotkeys("shift+Up", () => {
+        // console.log("Up.")
+        const { selectedTask } = getSelectedTaskData()
+        const taskBefore = selectedTask.previousElementSibling as HTMLElement
+        const taskBeforeId = taskBefore.dataset.taskId
+        if (taskBeforeId) {
+            setTaskDetailId(taskBeforeId)
+        }
+    })
+    useHotkeys("shift+Down", () => {
+        // console.log("Down.")
+        const { selectedTask } = getSelectedTaskData()
+        const taskAfter = selectedTask.nextSibling as HTMLElement
+        const taskAfterId = taskAfter.dataset.taskId
+        if (taskAfterId) {
+            setTaskDetailId(taskAfterId)
+        }
     })
     const onSubmit = (
         values: OperationVariables | undefined,

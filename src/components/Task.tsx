@@ -6,7 +6,6 @@ import { taskDetailIdAtom } from "../store"
 function Task({ task }: { task: TaskType }) {
     const [taskDetailId, setTaskDetailId] = useAtom(taskDetailIdAtom)
     const { id, name, link, fixedDate, labels } = task
-
     const liClasses = `${
         taskDetailId === id
             ? "selected-task border-red-500 border-b-8 border-r-8"
@@ -14,7 +13,11 @@ function Task({ task }: { task: TaskType }) {
     } even:bg-stone-100 odd:bg-stone-300 sm:ml-4 cursor-pointer`
 
     return (
-        <li className={liClasses} onClick={() => setTaskDetailId(id)}>
+        <li
+            data-task-id={id}
+            className={liClasses}
+            onClick={() => setTaskDetailId(id)}
+        >
             {fixedDate && (
                 <p className="fixed-date inline-block bg-stone-400 px-2">
                     {dayjs(new Date(fixedDate)).format("YYYY-MM-DD")}

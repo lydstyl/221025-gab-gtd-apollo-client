@@ -4,7 +4,6 @@ import { useHotkeys } from "react-hotkeys-hook"
 import { DELETE_TASK } from "../mutations/task"
 import { GET_TASKS } from "../queries/tasks"
 import { taskDetailIdAtom } from "../store"
-import { useEffect } from "react"
 
 function DeleteTask() {
     const [taskDetailId, setTaskDetailId] = useAtom(taskDetailIdAtom)
@@ -12,7 +11,7 @@ function DeleteTask() {
         refetchQueries: [{ query: GET_TASKS }],
     })
     useHotkeys(
-        "shift+T+D, shift+T+S",
+        "shift+R, shift+T+D, shift+T+S",
         () => {
             const button = document.getElementById("delete-task-button")
             if (confirm(`Delete task with id ${button?.dataset.taskId} ?`)) {
