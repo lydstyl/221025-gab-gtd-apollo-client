@@ -12,10 +12,7 @@ function AddTask() {
     let taskNameInput: HTMLInputElement | null
     useHotkeys("shift+T+A", () => {
         console.log("shift+T+A")
-
-        if (taskNameInput) {
-            taskNameInput.focus()
-        }
+        document.getElementById("add-task-name-input")?.focus()
     })
 
     const [addTask, { data, loading, error }] = useMutation(ADD_TASK, {
@@ -39,12 +36,11 @@ function AddTask() {
             <H2>Add a new task</H2>
             <div className="sm:flex sm:flew-row">
                 <input
-                    ref={node => {
-                        taskNameInput = node
-                    }}
+                    ref={node => (taskNameInput = node)}
                     className="rounded px-4 w-full"
                     type="text"
                     name="name"
+                    id="add-task-name-input"
                     placeholder="name"
                     required
                     autoFocus
