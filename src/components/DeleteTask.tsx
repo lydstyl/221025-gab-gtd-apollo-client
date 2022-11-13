@@ -14,29 +14,51 @@ function DeleteTask() {
         "shift+R, shift+T+D, shift+T+S",
         () => {
             const button = document.getElementById("delete-task-button")
+            const taskId = button?.dataset.taskId
             // if (confirm(`Delete task with id ${button?.dataset.taskId} ?`)) {
             if (confirm(`Delete task ?`)) {
                 deleteTask({
-                    variables: { deleteTaskId: button?.dataset.taskId },
+                    variables: { deleteTaskId: taskId },
                 }).then(result => {
-                    const addTaskInput = document.getElementById(
-                        "add-task-name-input"
-                    ) as HTMLInputElement
-                    if (addTaskInput) {
-                        addTaskInput.value = ""
-                        addTaskInput.focus()
+                    if (taskId) {
+                        selectAfterRemovingTask(taskId)
                     }
                 })
             }
         },
         { enabled: true }
     )
+    function selectAfterRemovingTask(removedTaskId: string) {
+        const previousTask = document.querySelector(
+            `li[data-task-id="${removedTaskId}"]`
+        )?.previousElementSibling as HTMLElement
+        const privousTaskId = previousTask?.dataset.taskId
+
+        if (privousTaskId) {
+            setTaskDetailId(privousTaskId)
+        } else {
+            const nextTask = document.querySelector(
+                `li[data-task-id="${removedTaskId}"]`
+            )?.nextElementSibling as HTMLElement
+            const nextTaskId = nextTask.dataset.taskId
+            if (nextTaskId) {
+                setTaskDetailId(nextTaskId)
+            } else {
+                const addTaskInput = document.getElementById(
+                    "add-task-name-input"
+                ) as HTMLInputElement
+                if (addTaskInput) {
+                    addTaskInput.value = ""
+                    addTaskInput.focus()
+                }
+            }
+        }
+    }
     function handleClick() {
         if (confirm(`Delete task with id ${taskDetailId} ?`)) {
             deleteTask({ variables: { deleteTaskId: taskDetailId } }).then(
                 result => {
-                    // console.log(`gb🚀 ~ deleteTask ~ result`, result)
-                    // setTaskDetailId("")
+                    selectAfterRemovingTask(taskDetailId)
                 }
             )
         }
