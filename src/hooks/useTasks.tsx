@@ -9,7 +9,8 @@ function useTasks(): QueryResult<any, OperationVariables> {
     if (hook?.error?.message.toLowerCase().includes("unauthorised")) {
         localStorage.clear()
 
-        document.location.href = "/login"
+        // document.location.href = "/login"
+        console.log("redirect to /login with context or jotai ?")
 
         // navigate("/login")
     }

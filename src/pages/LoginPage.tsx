@@ -35,7 +35,8 @@ function LoginPage() {
         // console.log("go to task")
 
         // navigate("/tasks")
-        document.location.href = "/tasks"
+        // document.location.href = "/tasks"
+        console.log("redirect to /tasks with context or jotai ?")
 
         return <p>user and token stored !</p>
     }
