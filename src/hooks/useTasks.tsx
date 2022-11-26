@@ -1,14 +1,17 @@
-import { useQuery } from "@apollo/client"
+import { OperationVariables, QueryResult, useQuery } from "@apollo/client"
 import { GET_TASKS } from "../queries/tasks"
-import { useNavigate } from "react-router-dom"
+// import { useNavigate } from "react-router-dom"
 
-function useTasks() {
+function useTasks(): QueryResult<any, OperationVariables> {
     const hook = useQuery(GET_TASKS)
-    let navigate = useNavigate()
+    // const navigate = useNavigate()
 
     if (hook?.error?.message.toLowerCase().includes("unauthorised")) {
         localStorage.clear()
-        return navigate("/login")
+
+        document.location.href = "/login"
+
+        // navigate("/login")
     }
 
     return hook

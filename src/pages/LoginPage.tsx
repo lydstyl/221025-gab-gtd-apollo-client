@@ -1,4 +1,5 @@
 import { useRef } from "react"
+// import { useNavigate } from "react-router-dom"
 import { useLazyQuery } from "@apollo/client"
 import { LOGIN } from "../queries/login"
 
@@ -6,6 +7,7 @@ function LoginPage() {
     const email = useRef<HTMLInputElement>(null)
     const password = useRef<HTMLInputElement>(null)
     const [getLogin, { loading, error, data }] = useLazyQuery(LOGIN)
+    // const navigate = useNavigate()
 
     const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
         event?.preventDefault()
@@ -15,6 +17,7 @@ function LoginPage() {
         getLogin({
             variables: { email, password },
         })
+        console.log("xxxxxx", error)
     }
 
     if (loading) {
@@ -28,6 +31,12 @@ function LoginPage() {
         const { user, token } = data.login
 
         localStorage.setItem("login", JSON.stringify({ user, token }))
+
+        // console.log("go to task")
+
+        // navigate("/tasks")
+        document.location.href = "/tasks"
+
         return <p>user and token stored !</p>
     }
     return (
