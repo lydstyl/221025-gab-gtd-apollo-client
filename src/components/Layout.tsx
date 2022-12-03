@@ -22,7 +22,7 @@ function Layout() {
                         <Link to="login">Login</Link>
                     </li>
                     <li>
-                        <Link to="/tasks">Tasks</Link>
+                        <Link to="/">Tasks</Link>
                     </li>
                     <li>
                         <Link to="/labels">Labels</Link>

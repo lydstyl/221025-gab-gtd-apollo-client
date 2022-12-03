@@ -16,11 +16,13 @@ function App() {
             <div className="mx-0 px-4">
                 <Routes>
                     <Route element={<Layout />}>
-                        <Route path="/" element={<PublicPage />} />
+                        {/* <Route path="/" element={<PublicPage />} /> */}
+                        <Route path="/" element={<TasksPage />} />
+
                         <Route path="/loginOld" element={<LoginPageOld />} />
 
                         <Route path="/login" element={<LoginPage />} />
-                        <Route path="/tasks" element={<TasksPage />} />
+                        {/* <Route path="/tasks" element={<TasksPage />} /> */}
                         <Route path="/labels" element={<LabelsPage />} />
 
                         <Route
