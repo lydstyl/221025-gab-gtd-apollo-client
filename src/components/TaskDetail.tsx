@@ -8,6 +8,7 @@ import DeleteTask from "./DeleteTask"
 import UpdateTask from "./UpdateTask"
 import TaskDetailLabels from "./TaskDetailLabels"
 import H2 from "./H2"
+import Spinner from "./Spinner"
 
 function TaskDetail() {
     const [taskDetailId] = useAtom(taskDetailIdAtom)
@@ -22,7 +23,7 @@ function TaskDetail() {
         }
     }, [taskDetailId])
 
-    if (loading) return <p>Loading...</p>
+    if (loading) return <Spinner />
     if (error) return <p className="text-red-500">Error: {error.message}</p>
 
     if (!data) return <p>There is no data.</p>

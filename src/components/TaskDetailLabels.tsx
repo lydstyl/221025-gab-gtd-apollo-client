@@ -4,6 +4,7 @@ import { Label } from "../types/label"
 import { REMOVE_ONE_LABEL_FROM_TASK } from "../mutations/task"
 import { GET_TASKS } from "../queries/tasks"
 import { taskDetailIdAtom } from "../store"
+import Spinner from "./Spinner"
 
 function TaskDetailLabels({ labels }: { labels: Label[] }) {
     const [taskDetailId] = useAtom(taskDetailIdAtom)
@@ -25,7 +26,7 @@ function TaskDetailLabels({ labels }: { labels: Label[] }) {
             },
         })
     }
-    if (loading) return <p>Loading...</p>
+    if (loading) return <Spinner />
     if (error) return <p className="text-red-500">Error: {error.message}</p>
     return (
         <ul className="labels-in-selected-task">

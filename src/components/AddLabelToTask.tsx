@@ -9,6 +9,7 @@ import { GET_TASKS } from "../queries/tasks"
 import { ADD_ONE_LABEL_TO_TASK } from "../mutations/task"
 import { byPosition } from "../domain"
 import { Label } from "../types/label"
+import Spinner from "./Spinner"
 
 function AddLabelToTask() {
     const [taskDetailId] = useAtom(taskDetailIdAtom)
@@ -88,7 +89,7 @@ function AddLabelToTask() {
     function handleClick() {
         addOneLabelToTask({ variables: { labelId, taskId: taskDetailId } })
     }
-    if (loading || mutationTuple.loading) return <p>Loading...</p>
+    if (loading || mutationTuple.loading) return <Spinner />
     if (error) return <p className="text-red-500">Error: {error.message}</p>
     if (mutationTuple.error)
         return (

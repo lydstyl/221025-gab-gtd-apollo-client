@@ -3,6 +3,7 @@ import { Task as TaskType } from "../types/task"
 import useTasks from "../hooks/useTasks"
 import Task from "../components/Task"
 import { byPosition, getMyTasksCustomlySorted } from "../domain"
+import Spinner from "./Spinner"
 
 function TaskList() {
     const { loading, error, data } = useTasks()
@@ -29,7 +30,7 @@ function TaskList() {
         }
     }, [data])
 
-    if (loading) return <p>Loading...</p>
+    if (loading) return <Spinner />
     if (error) return <p className="text-red-500">Error: {error.message}</p>
     return (
         <ul className="sm:basis-1/2">
