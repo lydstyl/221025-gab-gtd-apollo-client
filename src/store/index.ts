@@ -21,3 +21,5 @@ export const taskDetailIdAtom = atom(
         console.log("yo")
     }
 )
+
+export const hasLoginInLocalStorage = atom<boolean>(false)
