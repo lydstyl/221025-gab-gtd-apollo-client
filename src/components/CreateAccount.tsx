@@ -1,21 +1,22 @@
 import { useRef } from "react"
-import { useLazyQuery } from "@apollo/client"
-import { LOGIN } from "../queries/login"
 
-function Login() {
+import { useMutation } from "@apollo/client"
+import { ADD_USER } from "../mutations/user"
+
+function CreateAccount() {
     const email = useRef<HTMLInputElement>(null)
     const password = useRef<HTMLInputElement>(null)
-    const [getLogin, { loading, error, data }] = useLazyQuery(LOGIN)
+    const [addUser, { loading, error, data }] = useMutation(ADD_USER)
 
     const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
         event?.preventDefault()
         const formData = new FormData(event.currentTarget)
         const email = formData.get("email") as string
         const password = formData.get("password") as string
-        getLogin({
+        addUser({
             variables: { email, password },
         })
-        console.log("xxxxxx", error)
+        console.log("error", error)
     }
 
     if (loading) {
@@ -37,7 +38,6 @@ function Login() {
             onSubmit={handleSubmit}
             className="bg-stone-200 p-4 -mx-4 sm:flex justify-center"
         >
-            <h2>Login</h2>
             <input
                 ref={email}
                 className="my-4 px-4 rounded"
@@ -56,10 +56,9 @@ function Login() {
                 className="my-4 sm:mx-4 px-4 border-solid border-2 text-blue-500 border-blue-500 rounded"
                 type="submit"
             >
-                Login
+                Create account
             </button>
         </form>
     )
 }
-
-export default Login
+export default CreateAccount
