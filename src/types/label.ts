@@ -4,3 +4,6 @@ export interface Label {
     position: number
     color: string
 }
+export type Data = {
+    getLabels: Label[]
+}
