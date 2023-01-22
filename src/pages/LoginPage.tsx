@@ -1,9 +1,15 @@
 import { useRef } from "react"
+import { useAtom } from "jotai"
+
+import { isAuthenticatedAtom } from "../store"
+
 // import { useNavigate } from "react-router-dom"
 import { useLazyQuery } from "@apollo/client"
 import { LOGIN } from "../queries/login"
 
 function LoginPage() {
+    const [isAuthenticated, setIsAuthenticated] = useAtom(isAuthenticatedAtom)
+
     const email = useRef<HTMLInputElement>(null)
     const password = useRef<HTMLInputElement>(null)
     const [getLogin, { loading, error, data }] = useLazyQuery(LOGIN)
@@ -36,7 +42,9 @@ function LoginPage() {
 
         // navigate("/tasks")
         // document.location.href = "/tasks"
-        console.log("redirect to /tasks with context or jotai ?")
+        // console.log("redirect to /tasks with context or jotai ?")
+
+        // setIsAuthenticated(true)
 
         return <p>user and token stored !</p>
     }
@@ -55,7 +63,7 @@ function LoginPage() {
             <input
                 ref={password}
                 className="my-4 sm:ml-4 px-4 rounded"
-                type="text"
+                type="password"
                 name="password"
                 placeholder="password"
             />
