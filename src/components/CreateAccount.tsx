@@ -16,7 +16,7 @@ function CreateAccount() {
         addUser({
             variables: { email, password },
         })
-        console.log("error", error)
+        alert(`Account created ! You can now login with account ${email}.`)
     }
 
     if (loading) {

@@ -14,8 +14,11 @@ function Login() {
         const password = formData.get("password") as string
         getLogin({
             variables: { email, password },
+            onCompleted: data => {
+                // console.log(`gb🚀 ~ handleSubmit ~ data`, data.token, data.user)
+                window.location.href = "/"
+            },
         })
-        console.log("xxxxxx", error)
     }
 
     if (loading) {
