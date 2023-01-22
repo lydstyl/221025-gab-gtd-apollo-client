@@ -16,23 +16,22 @@ function AddLabelToTask() {
     const [labelId, setLabelId] = useState<string | null>(null)
     const [sortedLabels, setSortedLabels] = useState<Label[]>([])
     const { loading, error, data } = useQuery(GET_LABELS)
-
-    // const [removeLabel, { loading, error }] = useMutation(
-    //     REMOVE_ONE_LABEL_FROM_TASK,
-    //     {
-    //         refetchQueries: [{ query: GET_TASKS }],
-    //     }
-    // )
-
     const [addOneLabelToTask, mutationTuple] = useMutation(
         ADD_ONE_LABEL_TO_TASK,
         {
             refetchQueries: [{ query: GET_TASKS }],
         }
     )
+
     useEffect(() => {
+        if (!data?.getLabels.length) {
+            setSortedLabels([])
+            return
+        }
+
         if (data?.getLabels) {
             let labels = [...data.getLabels]
+
             labels = labels.sort(byPosition)
 
             setLabelId(labels[0].id)
@@ -69,14 +68,7 @@ function AddLabelToTask() {
                     `[data-label-id="${labelId}"]`
                 ) as HTMLButtonElement
                 buttonToDeleteLabel.click()
-                // removeLabel({
-                //     variables: {
-                //         labelId,
-                //         taskId
-                //     },
-                // })
             } else {
-                // console.log("Adding label.")
                 addOneLabelToTask({ variables: { labelId, taskId } })
             }
         })

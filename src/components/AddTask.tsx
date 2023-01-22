@@ -10,7 +10,6 @@ function AddTask() {
     const [taskDetailId, setTaskDetailId] = useAtom(taskDetailIdAtom)
     let taskNameInput: HTMLInputElement | null
     useHotkeys("shift+N, shift+T+A", () => {
-        // console.log("Add a new task.")
         document.getElementById("add-task-name-input")?.focus()
     })
 
