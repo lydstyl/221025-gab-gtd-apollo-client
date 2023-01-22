@@ -1,11 +1,8 @@
-import { useAtom } from "jotai"
-
-import { useEffect } from "react"
-import { hasLoginInLocalStorage } from "../store"
 import Login from "../components/Login"
 import Button from "../components/Button"
 import CreateAccount from "../components/CreateAccount"
 import DeleteAccount from "../components/DeleteAccount"
+import useHasLoginStored from "../hooks/useHasLoginStored"
 
 const handleLogout = () => {
     localStorage.clear()
@@ -13,29 +10,25 @@ const handleLogout = () => {
 }
 
 function LoginPage() {
-    const [hasLoginStored, setHasLoginStored] = useAtom(hasLoginInLocalStorage)
+    const [hasLoginStored, setHasLoginStored] = useHasLoginStored()
 
-    useEffect(() => {
-        if (localStorage.getItem("login")) {
-            setHasLoginStored(true)
-        }
-    }, [])
+    if (hasLoginStored) {
+        return (
+            <>
+                <h2>Disconnect</h2>
+                <Button options={{ onClick: handleLogout }}>Logout</Button>
+
+                <DeleteAccount />
+            </>
+        )
+    }
 
     return (
-        <div>
-            {!hasLoginStored && <Login />}
+        <>
+            <Login />
 
-            {hasLoginStored && (
-                <>
-                    <h2>Disconnect</h2>
-                    <Button options={{ onClick: handleLogout }}>Logout</Button>
-                </>
-            )}
-
-            {!hasLoginStored && <CreateAccount />}
-
-            {hasLoginStored && <DeleteAccount />}
-        </div>
+            <CreateAccount />
+        </>
     )
 }
 
