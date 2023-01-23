@@ -1,21 +1,21 @@
 import { SetStateAction, useEffect, useState } from "react"
-import { useAtom } from "jotai"
 import { useMutation, useQuery } from "@apollo/client"
 import { useHotkeys } from "react-hotkeys-hook"
 import { GET_LABELS } from "../queries/label"
 import { Label as LabelType } from "../types/label"
-import { taskDetailIdAtom } from "../store"
 import { GET_TASKS } from "../queries/tasks"
 import { ADD_ONE_LABEL_TO_TASK } from "../mutations/task"
 import { byPosition } from "../domain"
-import { Label } from "../types/label"
 import Spinner from "./Spinner"
+import useSortedLabel from "../hooks/useSortedLabel"
 
 function AddLabelToTask() {
-    const [taskDetailId] = useAtom(taskDetailIdAtom)
     const [labelId, setLabelId] = useState<string | null>(null)
-    const [sortedLabels, setSortedLabels] = useState<Label[]>([])
     const { loading, error, data } = useQuery(GET_LABELS)
+    const [taskDetailId, sortedLabels, setSortedLabels] = useSortedLabel(
+        setLabelId,
+        data
+    )
     const [addOneLabelToTask, mutationTuple] = useMutation(
         ADD_ONE_LABEL_TO_TASK,
         {
@@ -63,7 +63,6 @@ function AddLabelToTask() {
             ) as HTMLButtonElement
             const taskId = deleteButton.dataset.taskId
             if (labelIsInTask(labelId)) {
-                // console.log("Removing label.")
                 const buttonToDeleteLabel = document.querySelector(
                     `[data-label-id="${labelId}"]`
                 ) as HTMLButtonElement
