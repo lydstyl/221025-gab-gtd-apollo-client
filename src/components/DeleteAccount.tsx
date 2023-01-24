@@ -1,6 +1,7 @@
 import { useMutation } from "@apollo/client"
 import { DELETE_USER } from "../mutations/user"
 import Button from "./Button"
+import H2 from "./H2"
 
 function DeleteAccount() {
     const [deleteUser, { loading, error, data }] = useMutation(DELETE_USER)
@@ -37,7 +38,7 @@ function DeleteAccount() {
     }
     return (
         <>
-            <h2>Delete account</h2>
+            <H2>Delete account</H2>
             <Button options={{ onClick: handleDeleteAccount }}>
                 Delete my account
             </Button>

@@ -3,6 +3,7 @@ import Button from "../components/Button"
 import CreateAccount from "../components/CreateAccount"
 import DeleteAccount from "../components/DeleteAccount"
 import useHasLoginStored from "../hooks/useHasLoginStored"
+import H2 from "../components/H2"
 
 const handleLogout = () => {
     localStorage.clear()
@@ -15,10 +16,12 @@ function LoginPage() {
     if (hasLoginStored) {
         return (
             <>
-                <h2>Disconnect</h2>
+                <H2>Disconnect</H2>
                 <Button options={{ onClick: handleLogout }}>Logout</Button>
 
-                <DeleteAccount />
+                <div className="border-2 rounded bg-stone-200 -mx-4 p-4 mb-4">
+                    <DeleteAccount />
+                </div>
             </>
         )
     }

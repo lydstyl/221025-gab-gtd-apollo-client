@@ -1,6 +1,7 @@
 import { useRef } from "react"
 import { useLazyQuery } from "@apollo/client"
 import { LOGIN } from "../queries/login"
+import H2 from "./H2"
 
 function Login() {
     const email = useRef<HTMLInputElement>(null)
@@ -36,32 +37,34 @@ function Login() {
         return <p>user and token stored !</p>
     }
     return (
-        <form
-            onSubmit={handleSubmit}
-            className="bg-stone-200 p-4 -mx-4 sm:flex justify-center"
-        >
-            <h2>Login</h2>
-            <input
-                ref={email}
-                className="my-4 px-4 rounded"
-                type="text"
-                name="email"
-                placeholder="email"
-            />
-            <input
-                ref={password}
-                className="my-4 sm:ml-4 px-4 rounded"
-                type="password"
-                name="password"
-                placeholder="password"
-            />
-            <button
-                className="my-4 sm:mx-4 px-4 border-solid border-2 text-blue-500 border-blue-500 rounded"
-                type="submit"
+        <>
+            <H2>Login</H2>
+            <form
+                onSubmit={handleSubmit}
+                className="p-4 -mx-4 sm:flex justify-center"
             >
-                Login
-            </button>
-        </form>
+                <input
+                    ref={email}
+                    className="my-4 px-4 rounded"
+                    type="text"
+                    name="email"
+                    placeholder="email"
+                />
+                <input
+                    ref={password}
+                    className="my-4 sm:ml-4 px-4 rounded"
+                    type="password"
+                    name="password"
+                    placeholder="password"
+                />
+                <button
+                    className="my-4 sm:mx-4 px-4 border-solid border-2 text-blue-500 border-blue-500 rounded"
+                    type="submit"
+                >
+                    Login
+                </button>
+            </form>
+        </>
     )
 }
 
