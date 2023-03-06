@@ -2,8 +2,11 @@ import { useRef } from "react"
 import { useLazyQuery } from "@apollo/client"
 import { LOGIN } from "../queries/login"
 import H2 from "./H2"
+import useAuth from "../hooks/useAuth"
 
 function Login() {
+    const { signin } = useAuth()
+
     const email = useRef<HTMLInputElement>(null)
     const password = useRef<HTMLInputElement>(null)
     const [getLogin, { loading, error, data }] = useLazyQuery(LOGIN)
@@ -13,12 +16,10 @@ function Login() {
         const formData = new FormData(event.currentTarget)
         const email = formData.get("email") as string
         const password = formData.get("password") as string
+
         getLogin({
             variables: { email, password },
-            onCompleted: data => {
-                // console.log(`gb🚀 ~ handleSubmit ~ data`, data.token, data.user)
-                window.location.href = "/"
-            },
+            onCompleted: data => signin(data.login.user),
         })
     }
 

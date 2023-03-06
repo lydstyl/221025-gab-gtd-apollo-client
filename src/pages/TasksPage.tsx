@@ -13,6 +13,7 @@ function TasksPage() {
 
                     <TaskDetail />
                 </div>
+
                 <TaskList />
             </div>
         </>

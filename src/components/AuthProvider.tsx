@@ -1,25 +1,18 @@
-import { useState, ReactNode } from "react"
-import { fakeAuthProvider } from "../auth"
+import { ReactNode } from "react"
 import { AuthContext } from "../hooks/useAuth"
+import useLocalAuth from "../hooks/useLocalAuth"
 
 function AuthProvider({ children }: { children: ReactNode }) {
-    let [user, setUser] = useState<any>(null)
+    const storedAuth = useLocalAuth()
 
-    let signin = (newUser: string, callback: VoidFunction) => {
-        return fakeAuthProvider.signin(() => {
-            setUser(newUser)
-            callback()
-        })
+    let signin = () => {}
+
+    let signout = () => {
+        localStorage.clear()
+        window.location.href = "/"
     }
 
-    let signout = (callback: VoidFunction) => {
-        return fakeAuthProvider.signout(() => {
-            setUser(null)
-            callback()
-        })
-    }
-
-    let value = { user, signin, signout }
+    let value = { storedAuth, signin, signout }
 
     return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>
 }

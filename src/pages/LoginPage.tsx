@@ -4,20 +4,20 @@ import CreateAccount from "../components/CreateAccount"
 import DeleteAccount from "../components/DeleteAccount"
 import useHasLoginStored from "../hooks/useHasLoginStored"
 import H2 from "../components/H2"
-
-const handleLogout = () => {
-    localStorage.clear()
-    window.location.href = "/"
-}
+import useAuth from "../hooks/useAuth"
+import useLocalAuth from "../hooks/useLocalAuth"
 
 function LoginPage() {
+    const { user, token } = useLocalAuth()
+
+    const { signout } = useAuth()
     const [hasLoginStored, setHasLoginStored] = useHasLoginStored()
 
-    if (hasLoginStored) {
+    if (token) {
         return (
             <>
                 <H2>Disconnect</H2>
-                <Button options={{ onClick: handleLogout }}>Logout</Button>
+                <Button options={{ onClick: signout }}>Logout</Button>
 
                 <div className="border-2 rounded bg-stone-200 -mx-4 p-4 mb-4">
                     <DeleteAccount />
