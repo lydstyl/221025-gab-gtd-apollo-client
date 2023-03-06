@@ -1,20 +1,18 @@
-import { useNavigate } from "react-router-dom"
 import useAuth from "../hooks/useAuth"
 
 function AuthStatus() {
     let auth = useAuth()
-    let navigate = useNavigate()
 
-    if (!auth.user) {
+    if (!auth.storedAuth.user) {
         return <p>You are not logged in.</p>
     }
 
     return (
         <p>
-            Welcome {auth.user}!{" "}
+            Welcome {auth.storedAuth.user}!{" "}
             <button
                 onClick={() => {
-                    auth.signout(() => navigate("/"))
+                    auth.signout()
                 }}
             >
                 Sign out

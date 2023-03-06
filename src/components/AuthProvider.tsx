@@ -1,18 +1,24 @@
 import { ReactNode } from "react"
+import { useNavigate } from "react-router-dom"
+
 import { AuthContext } from "../hooks/useAuth"
 import useLocalAuth from "../hooks/useLocalAuth"
 
 function AuthProvider({ children }: { children: ReactNode }) {
     const storedAuth = useLocalAuth()
+    const navigate = useNavigate()
 
-    let signin = () => {}
-
-    let signout = () => {
-        localStorage.clear()
-        window.location.href = "/"
+    const signin = () => {
+        navigate("/")
     }
 
-    let value = { storedAuth, signin, signout }
+    const signout = () => {
+        localStorage.clear()
+
+        navigate("/login") // without refresh so better then window.location.href = "/login"
+    }
+
+    const value = { storedAuth, signin, signout }
 
     return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>
 }
