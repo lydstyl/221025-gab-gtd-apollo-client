@@ -28,6 +28,7 @@ function UpdateLabel({ label }: { label: Label }) {
                 position: label.position || "0",
                 color: label.color,
             }}
+            enableReinitialize
             validate={values => {
                 const errors: { name?: string } = {}
 
