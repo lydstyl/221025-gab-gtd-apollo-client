@@ -11,7 +11,6 @@ function Task({ task }: { task: TaskType }) {
             ? "selected-task border-red-500 border-b-8 border-r-8"
             : ""
     } even:bg-stone-100 odd:bg-stone-300 sm:ml-4 cursor-pointer`
-
     return (
         <li
             data-task-id={id}
@@ -19,7 +18,7 @@ function Task({ task }: { task: TaskType }) {
             onClick={() => setTaskDetailId(id)}
         >
             {fixedDate && (
-                <p className="fixed-date inline-block bg-stone-400 px-2">
+                <p className="w-28 text-center fixed-date inline-block bg-stone-400 px-2">
                     {dayjs(new Date(fixedDate)).format("YYYY-MM-DD")}
                 </p>
             )}
