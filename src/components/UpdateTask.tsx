@@ -1,5 +1,5 @@
 import { OperationVariables, useMutation } from '@apollo/client'
-import { Formik, Form, Field, ErrorMessage } from 'formik'
+import { Formik, Form, Field, ErrorMessage, setIn } from 'formik'
 import { useAtom } from 'jotai'
 import dayjs from 'dayjs'
 import { useHotkeys } from 'react-hotkeys-hook'
@@ -62,6 +62,50 @@ function UpdateTask({ task }: { task: Task }) {
       }
     })
   })
+  useHotkeys('shift+U', () => {
+    type TaskToUpdate = {
+      variables: {
+        updateTaskId: string
+        fixedDate: string
+      }
+    }
+
+    const tasksToUpdate: TaskToUpdate[] = []
+
+    const allTasks: NodeListOf<Element> =
+      document.querySelectorAll('li[data-task-id]')
+
+    allTasks.forEach((task) => {
+      const date = task.querySelector('.fixed-date')?.textContent
+      if (
+        task instanceof HTMLElement &&
+        task.dataset.taskId &&
+        (!task.querySelector('p') || dayjs(date) < dayjs())
+      ) {
+        const updateTaskId = task.dataset.taskId
+
+        const taskToUpdate: TaskToUpdate = {
+          variables: {
+            updateTaskId,
+            fixedDate: dayjs().format('YYYY-MM-DD')
+          }
+        }
+
+        tasksToUpdate.push(taskToUpdate)
+      }
+    })
+
+    const interval = setInterval(() => {
+      const firstElement = tasksToUpdate.shift()
+      console.log('Update task with id: ', firstElement?.variables.updateTaskId)
+      updateTask(firstElement)
+
+      if (tasksToUpdate.length === 0) {
+        clearInterval(interval)
+      }
+    }, 2000)
+  })
+
   useHotkeys('shift+D', () => {
     // console.log("+1 day.")
     const button = document.getElementById('delete-task-button')
