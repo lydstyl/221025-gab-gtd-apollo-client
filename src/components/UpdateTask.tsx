@@ -77,21 +77,25 @@ function UpdateTask({ task }: { task: Task }) {
 
     allTasks.forEach((task) => {
       const date = task.querySelector('.fixed-date')?.textContent
-      if (
-        task instanceof HTMLElement &&
-        task.dataset.taskId &&
-        (!task.querySelector('p') || dayjs(date) < dayjs())
-      ) {
-        const updateTaskId = task.dataset.taskId
+      const hasDateOrLabel = task.querySelector('p')
 
-        const taskToUpdate: TaskToUpdate = {
-          variables: {
-            updateTaskId,
-            fixedDate: dayjs().format('YYYY-MM-DD')
+      if (task instanceof HTMLElement) {
+        const hasTaskId = task.dataset.taskId
+        const isPast =
+          dayjs(date) < dayjs() &&
+          +dayjs(date).format('DD') < +dayjs().format('DD')
+
+        if (hasTaskId && (!hasDateOrLabel || isPast)) {
+          const updateTaskId = task.dataset.taskId || ''
+          const taskToUpdate: TaskToUpdate = {
+            variables: {
+              updateTaskId,
+              fixedDate: dayjs().format('YYYY-MM-DD')
+            }
           }
-        }
 
-        tasksToUpdate.push(taskToUpdate)
+          tasksToUpdate.push(taskToUpdate)
+        }
       }
     })
 
@@ -103,7 +107,7 @@ function UpdateTask({ task }: { task: Task }) {
       if (tasksToUpdate.length === 0) {
         clearInterval(interval)
       }
-    }, 2000)
+    }, 300)
   })
 
   useHotkeys('shift+D', () => {
