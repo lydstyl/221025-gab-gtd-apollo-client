@@ -8,7 +8,19 @@ import { taskDetailIdAtom } from '../store'
 function DeleteTask() {
   const [taskDetailId, setTaskDetailId] = useAtom(taskDetailIdAtom)
   const [deleteTask, { data, loading, error }] = useMutation(DELETE_TASK, {
-    refetchQueries: [{ query: GET_TASKS }]
+    // refetchQueries: [{ query: GET_TASKS }]
+    update(cache, { data: { deleteTask } }) {
+      const { getTasks } = cache.readQuery({ query: GET_TASKS })
+
+      cache.writeQuery({
+        query: GET_TASKS,
+        data: {
+          getTasks: getTasks.filter(
+            (task: { id: string }) => task.id !== deleteTask.id
+          )
+        }
+      })
+    }
   })
   useHotkeys(
     'shift+R, shift+T+D, shift+T+S',
