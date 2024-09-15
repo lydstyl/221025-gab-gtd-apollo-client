@@ -21,7 +21,30 @@ function getSelectedTaskData() {
 function UpdateTask({ task }: { task: Task }) {
   const [taskDetailId, setTaskDetailId] = useAtom(taskDetailIdAtom)
   const [updateTask, { data, loading, error }] = useMutation(UPDATE_TASK, {
-    refetchQueries: [{ query: GET_TASKS }]
+    // refetchQueries: [{ query: GET_TASKS }]
+    update(cache, { data: { updateTask } }) {
+      const { getTasks } = cache.readQuery<{ getTasks: Task[] }>({
+        query: GET_TASKS
+      }) || { getTasks: [] }
+
+      const updatedTask = {
+        id: updateTask.id,
+        __typename: updateTask.__typename,
+        name: updateTask.name,
+        link: updateTask.link,
+        fixedDate: updateTask.fixedDate,
+        labels: updateTask.labels
+      }
+
+      const updatedTasks = getTasks.map((task) =>
+        task.id === updatedTask.id ? updatedTask : task
+      )
+
+      cache.writeQuery({
+        query: GET_TASKS,
+        data: { getTasks: updatedTasks }
+      })
+    }
   })
   useHotkeys('shift+L', () => {
     // console.log("Go to task link.")
