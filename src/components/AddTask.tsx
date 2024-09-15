@@ -5,6 +5,7 @@ import { taskDetailIdAtom } from '../store'
 import { ADD_TASK } from '../mutations/task'
 import { GET_TASKS } from '../queries/tasks'
 import H2 from './H2'
+import { Task } from '../types/task'
 
 function AddTask() {
   const [taskDetailId, setTaskDetailId] = useAtom(taskDetailIdAtom)
@@ -16,7 +17,9 @@ function AddTask() {
   const [addTask, { data, loading, error }] = useMutation(ADD_TASK, {
     // refetchQueries: [{ query: GET_TASKS }] // replace with update
     update(cache, { data: { addTask } }) {
-      const { getTasks } = cache.readQuery({ query: GET_TASKS })
+      const { getTasks } = cache.readQuery<{ getTasks: Task[] }>({
+        query: GET_TASKS
+      }) || { getTasks: [] }
 
       const newTask = {
         id: addTask.id,

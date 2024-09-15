@@ -10,7 +10,10 @@ function DeleteTask() {
   const [deleteTask, { data, loading, error }] = useMutation(DELETE_TASK, {
     // refetchQueries: [{ query: GET_TASKS }]
     update(cache, { data: { deleteTask } }) {
-      const { getTasks } = cache.readQuery({ query: GET_TASKS })
+      const queryResult = cache.readQuery<{ getTasks: any[] }>({
+        query: GET_TASKS
+      })
+      const getTasks = queryResult?.getTasks ?? []
 
       cache.writeQuery({
         query: GET_TASKS,
