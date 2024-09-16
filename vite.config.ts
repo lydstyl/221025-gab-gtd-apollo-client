@@ -1,10 +1,13 @@
-import { defineConfig } from "vite"
-import react from "@vitejs/plugin-react"
+import { defineConfig } from 'vite'
+import react from '@vitejs/plugin-react'
 
 // https://vitejs.dev/config/
 export default defineConfig({
-    // base: "/221025-gab-gtd-apollo-client/",
-    plugins: [react()],
+  // base: "/221025-gab-gtd-apollo-client/",
+  plugins: [react()],
+  build: {
+    target: 'esnext' //browsers can handle the latest ES features
+  }
 })
 
 // import { defineConfig, loadEnv } from 'vite'
