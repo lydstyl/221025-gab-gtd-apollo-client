@@ -9,6 +9,8 @@ import {
   createHttpLink
 } from '@apollo/client'
 import { setContext } from '@apollo/client/link/context'
+import { persistCache, LocalStorageWrapper } from 'apollo3-cache-persist'
+
 import './index.css'
 
 const httpLink = createHttpLink({
@@ -38,16 +40,24 @@ const authLink = setContext((_, { headers }) => {
   }
 })
 
-const client = new ApolloClient({
-  link: authLink.concat(httpLink),
-
-  cache: new InMemoryCache()
+const cache = new InMemoryCache()
+// await before instantiating ApolloClient, else queries might run before the cache is persisted
+await persistCache({
+  cache,
+  storage: new LocalStorageWrapper(window.localStorage)
 })
 
-// const client = new ApolloClient({
-//   // ...other arguments...
-//   cache: new InMemoryCache(options)
-// });
+const client = new ApolloClient({
+  link: authLink.concat(httpLink),
+  cache
+
+  // cache: new InMemoryCache()
+  // defaultOptions: {
+  //   watchQuery: {
+  //     nextFetchPolicy: 'cache-only'
+  //   }
+  // }
+})
 
 ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
   <React.StrictMode>

@@ -10,6 +10,7 @@
     },
     "dependencies": {
         "@apollo/client": "^3.11.8",
+        "apollo3-cache-persist": "^0.15.0",
         "dayjs": "^1.11.13",
         "formik": "^2.4.6",
         "graphql": "^16.9.0",

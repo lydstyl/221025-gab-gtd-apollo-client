@@ -1,28 +1,31 @@
-import { useAtom } from "jotai"
+import { useAtom } from 'jotai'
 
-import { isAuthenticatedAtom } from "../store"
+import { isAuthenticatedAtom } from '../store'
 
-import { OperationVariables, QueryResult, useQuery } from "@apollo/client"
-import { GET_TASKS } from "../queries/tasks"
+import { OperationVariables, QueryResult, useQuery } from '@apollo/client'
+import { GET_TASKS } from '../queries/tasks'
 // import { useNavigate } from "react-router-dom"
 
 function useTasks(): QueryResult<any, OperationVariables> {
-    const [isAuthenticated, setIsAuthenticated] = useAtom(isAuthenticatedAtom)
+  const [isAuthenticated, setIsAuthenticated] = useAtom(isAuthenticatedAtom)
 
-    const hook = useQuery(GET_TASKS)
-    // const navigate = useNavigate()
+  const hook = useQuery(GET_TASKS, {
+    fetchPolicy: 'cache-and-network' // Used for first execution
+    // nextFetchPolicy: 'cache-first', // Used for subsequent executions
+  })
+  // const navigate = useNavigate()
 
-    if (hook?.error?.message.toLowerCase().includes("unauthorised")) {
-        localStorage.clear()
+  if (hook?.error?.message.toLowerCase().includes('unauthorised')) {
+    localStorage.clear()
 
-        // document.location.href = "/login"
-        // console.log("redirect to /login with context or jotai ?")
+    // document.location.href = "/login"
+    // console.log("redirect to /login with context or jotai ?")
 
-        // navigate("/login")
-        // setIsAuthenticated(false)
-    }
+    // navigate("/login")
+    // setIsAuthenticated(false)
+  }
 
-    return hook
+  return hook
 }
 
 export default useTasks
