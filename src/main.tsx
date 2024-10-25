@@ -14,7 +14,7 @@ import { persistCache, LocalStorageWrapper } from 'apollo3-cache-persist'
 import './index.css'
 
 const httpLink = createHttpLink({
-  uri: 'http://angel-tools.ddns.net/gtd'
+  uri: 'https://angel-tools.ddns.net/gtd'
   // uri: process.env.REACT_APP_API_URI
   // uri: "https://my-custom-gtd.onrender.com/",
 
