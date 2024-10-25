@@ -14,11 +14,12 @@ import { persistCache, LocalStorageWrapper } from 'apollo3-cache-persist'
 import './index.css'
 
 const httpLink = createHttpLink({
-  // uri: process.env.REACT_APP_API_URI,
+  uri: 'http://angel-tools.ddns.net/gtd'
+  // uri: process.env.REACT_APP_API_URI
   // uri: "https://my-custom-gtd.onrender.com/",
 
-  // uri: 'http://localhost:4000/',
-  uri: 'https://two21016-gab-gtd-apollo-server.onrender.com/'
+  // uri: 'http://localhost:4000/'
+  // uri: 'https://two21016-gab-gtd-apollo-server.onrender.com/'
   // uri: "https://lazy-pink-leopard-tux.cyclic.app/",
 })
 
